@@ -91,7 +91,7 @@ class UserRemote extends BaseUserRemote {
       
           CacheHelper.saveData(key: 'token', value: userdata.data!.token);
 
-      /// todo: take token in shared pref
+
 
       return userdata;
     } else {
