@@ -1,4 +1,5 @@
 import 'package:e_commerce/domain_layer/use_cases/getbanners/getbanners.dart';
+import 'package:e_commerce/domain_layer/use_cases/products/porductsusecase.dart';
 import 'package:e_commerce/domain_layer/use_cases/user_usecase/profile_usecase.dart';
 import 'package:flutter/material.dart';
 
@@ -9,6 +10,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   ServicesLocator().init();
   ServicesLocator().banners();
+  ServicesLocator().products();
 
 
   await CacheHelper.init();
@@ -44,7 +46,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   void getData() async {
 
-     var data = await  GetBannersUseCase(baseGetBannersRepo: gitIt()).excute();
+     var data = await  GetProductsUseCase(gitIt()).excute();
 
      print(data);
 

@@ -6,6 +6,7 @@ class AppConst{
   static String postLogOut='${baseurl}logout';
   static String postRegister='${baseurl}register';
   static String getBanners='${baseurl}banners';
+  static String getProducts='${baseurl}home';
 
 
 
