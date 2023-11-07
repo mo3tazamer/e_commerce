@@ -5,6 +5,7 @@ class AppConst{
   static String putUpdateProfile='${baseurl}update-profile';
   static String postLogOut='${baseurl}logout';
   static String postRegister='${baseurl}register';
+  static String getBanners='${baseurl}banners';
 
 
 

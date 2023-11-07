@@ -14,3 +14,6 @@ class LogOutModel extends Equatable {
 
   List<Object?> get props => [status,message];
 }
+
+
+

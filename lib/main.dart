@@ -1,8 +1,4 @@
-import 'package:e_commerce/core/const/appconst.dart';
-import 'package:e_commerce/data_layer/remote_services/user_remoteservices/user_remote.dart';
-import 'package:e_commerce/data_layer/repositery/userdatarepo.dart';
-import 'package:e_commerce/domain_layer/repositery/user_repo/user_repo.dart';
-import 'package:e_commerce/domain_layer/use_cases/user_usecase/login_usecase.dart';
+import 'package:e_commerce/domain_layer/use_cases/getbanners/getbanners.dart';
 import 'package:e_commerce/domain_layer/use_cases/user_usecase/profile_usecase.dart';
 import 'package:flutter/material.dart';
 
@@ -12,6 +8,9 @@ import 'core/services_locator/services_locator.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   ServicesLocator().init();
+  ServicesLocator().banners();
+
+
   await CacheHelper.init();
   runApp(const MyApp());
 }
@@ -44,12 +43,12 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   void getData() async {
-    final result =
-        await ProFileUseCase(gitIt()).excute(CacheHelper.getData(key: 'token'));
 
-    print(result);
+     var data = await  GetBannersUseCase(baseGetBannersRepo: gitIt()).excute();
 
-    print(CacheHelper.getData(key: 'token'));
+     print(data);
+
+
   }
 
   @override

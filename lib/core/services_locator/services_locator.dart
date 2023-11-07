@@ -1,6 +1,10 @@
+import 'package:e_commerce/data_layer/remote_services/getbanners_remoteservices.dart';
 import 'package:e_commerce/data_layer/remote_services/user_remoteservices/user_remote.dart';
+import 'package:e_commerce/data_layer/repositery/getbannersrepo.dart';
 import 'package:e_commerce/data_layer/repositery/userdatarepo.dart';
+import 'package:e_commerce/domain_layer/repositery/getbanners_repo.dart';
 import 'package:e_commerce/domain_layer/repositery/user_repo/user_repo.dart';
+import 'package:e_commerce/domain_layer/use_cases/getbanners/getbanners.dart';
 import 'package:e_commerce/domain_layer/use_cases/user_usecase/login_usecase.dart';
 import 'package:e_commerce/domain_layer/use_cases/user_usecase/logout_usecase.dart';
 import 'package:e_commerce/domain_layer/use_cases/user_usecase/profile_usecase.dart';
@@ -19,5 +23,22 @@ class ServicesLocator {
     gitIt.registerLazySingleton(() => LogInUseCase(gitIt()));
     gitIt.registerLazySingleton<BaseUserRepo>(() => UserDataRepo(gitIt()));
     gitIt.registerLazySingleton<BaseUserRemote>(() => UserRemote());
+  }
+  void banners(){
+    /// usecase
+
+    gitIt.registerLazySingleton(() => GetBannersUseCase(baseGetBannersRepo: gitIt()));
+
+
+
+   ///domain
+    gitIt.registerLazySingleton<BaseGetBannersRepo>(() => GetBannersRepo(gitIt()));
+
+    /// data
+    gitIt.registerLazySingleton<BaseGetBannersRemoteServices>(() => GetBannersRemoteServices());
+
+
+
+
   }
 }
