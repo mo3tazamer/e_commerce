@@ -8,15 +8,20 @@ class Products extends Equatable{
   String image;
   String name;
   String description;
+  bool inFavorites;
+  bool inCart;
+
 
   Products(
-      { required this.id,
-     required this.price,
+      {required this.id,
+    required  this.price,
      required this.oldPrice,
-     required this.discount,
-     required this.image,
-    required this.name,
-     required this.description});
+    required this.discount,
+    required  this.image,
+     required this.name,
+     required this.description,
+     required this.inFavorites,
+     required this.inCart});
 
   @override
 

@@ -1,3 +1,4 @@
+import 'package:e_commerce/domain_layer/entites/products.dart';
 import 'package:e_commerce/domain_layer/use_cases/getbanners/getbanners.dart';
 import 'package:e_commerce/domain_layer/use_cases/products/porductsusecase.dart';
 import 'package:e_commerce/domain_layer/use_cases/user_usecase/profile_usecase.dart';
@@ -44,11 +45,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  void getData() async {
+  Future<dynamic> getData() async {
 
      var data = await  GetProductsUseCase(gitIt()).excute();
+     print(data[0].inCart);
 
-     print(data);
+    return data;
+     print(data[0].inCart);
 
 
   }
@@ -69,6 +72,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+
+
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -78,8 +84,8 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+             const Text(
+              '',
             ),
             Text(
               '$_counter',
