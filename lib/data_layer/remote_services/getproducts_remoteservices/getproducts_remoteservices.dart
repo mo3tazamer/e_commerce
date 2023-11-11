@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:e_commerce/core/const/appconst.dart';
 import 'package:e_commerce/core/error/serviceseexception.dart';
 
-import '../models/productsmodel/productsmodel.dart';
+import '../../models/productsmodel/productsmodel.dart';
 
 abstract class BaseGetProductsRemote {
   Future<List<ProductsModel>> getProduct();

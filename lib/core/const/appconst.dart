@@ -7,6 +7,8 @@ class AppConst{
   static String postRegister='${baseurl}register';
   static String getBanners='${baseurl}banners';
   static String getProducts='${baseurl}home';
+  static String addOrDeleteFavorites='${baseurl}favorites';
+  static String getFavorites='${baseurl}favorites';
 
 
 

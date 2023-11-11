@@ -1,18 +1,17 @@
-import 'package:e_commerce/domain_layer/entites/products.dart';
-import 'package:e_commerce/domain_layer/use_cases/getbanners/getbanners.dart';
-import 'package:e_commerce/domain_layer/use_cases/products/porductsusecase.dart';
-import 'package:e_commerce/domain_layer/use_cases/user_usecase/profile_usecase.dart';
+
+
 import 'package:flutter/material.dart';
 
 import 'core/cachehelper/cachehelper.dart';
 import 'core/services_locator/services_locator.dart';
+import 'domain_layer/use_cases/favoritesusecase/addordeletefavorites.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  ServicesLocator().init();
+  ServicesLocator().user();
   ServicesLocator().banners();
   ServicesLocator().products();
-
+  ServicesLocator().favorites();
 
   await CacheHelper.init();
   runApp(const MyApp());
@@ -21,7 +20,6 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -46,14 +44,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   Future<dynamic> getData() async {
-
-     var data = await  GetProductsUseCase(gitIt()).excute();
-     print(data[0].inCart);
+    var data = await AddOrDeleteFavoritesUseCase(gitIt()).excute(productId: 56);
+    // print(data.toString());
 
     return data;
-     print(data[0].inCart);
-
-
   }
 
   @override
@@ -72,9 +66,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
-
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -84,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-             const Text(
+            const Text(
               '',
             ),
             Text(

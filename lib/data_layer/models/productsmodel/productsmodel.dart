@@ -1,4 +1,4 @@
-import '../../../domain_layer/entites/products.dart';
+import '../../../domain_layer/entites/products/products.dart';
 
 class ProductsModel extends Products {
   ProductsModel(

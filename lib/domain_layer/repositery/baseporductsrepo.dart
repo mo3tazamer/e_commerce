@@ -1,4 +1,4 @@
-import '../entites/products.dart';
+import '../entites/products/products.dart';
 
 abstract class BaseGetProductsRepo{
 

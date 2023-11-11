@@ -1,15 +1,15 @@
 import 'package:equatable/equatable.dart';
 
 class Products extends Equatable{
-  int id;
-  dynamic price;
-  dynamic oldPrice;
-  int discount;
-  String image;
-  String name;
-  String description;
-  bool inFavorites;
-  bool inCart;
+  int? id;
+  dynamic? price;
+  dynamic? oldPrice;
+  int? discount;
+  String? image;
+  String? name;
+  String? description;
+  bool? inFavorites;
+  bool? inCart;
 
 
   Products(

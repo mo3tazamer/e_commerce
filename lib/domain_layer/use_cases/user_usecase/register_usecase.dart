@@ -1,6 +1,7 @@
-import 'package:e_commerce/domain_layer/repositery/user_repo/user_repo.dart';
+
 
 import '../../entites/user/user.dart';
+import '../../repositery/baseuserrepo/user_repo.dart';
 
 class RegisterUseCase {
   BaseUserRepo baseUserRepo;

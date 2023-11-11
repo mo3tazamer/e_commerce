@@ -1,12 +1,15 @@
-import 'package:e_commerce/data_layer/remote_services/getbanners_remoteservices.dart';
-import 'package:e_commerce/data_layer/remote_services/getproducts_remoteservices.dart';
+import 'package:e_commerce/data_layer/remote_services/favoritesremoteservices/favoritesremoteservices.dart';
+import 'package:e_commerce/data_layer/remote_services/getbanners_remoteservices/getbanners_remoteservices.dart';
+import 'package:e_commerce/data_layer/remote_services/getproducts_remoteservices/getproducts_remoteservices.dart';
 import 'package:e_commerce/data_layer/remote_services/user_remoteservices/user_remote.dart';
+import 'package:e_commerce/data_layer/repositery/favoritesrepo.dart';
 import 'package:e_commerce/data_layer/repositery/getbannersrepo.dart';
 import 'package:e_commerce/data_layer/repositery/userdatarepo.dart';
-import 'package:e_commerce/domain_layer/repositery/getbanners_repo.dart';
-import 'package:e_commerce/domain_layer/repositery/user_repo/user_repo.dart';
-import 'package:e_commerce/domain_layer/use_cases/getbanners/getbanners.dart';
-import 'package:e_commerce/domain_layer/use_cases/products/porductsusecase.dart';
+import 'package:e_commerce/domain_layer/repositery/basefavoritesrepo.dart';
+import 'package:e_commerce/domain_layer/repositery/basegetbannersrepo.dart';
+
+
+
 import 'package:e_commerce/domain_layer/use_cases/user_usecase/login_usecase.dart';
 import 'package:e_commerce/domain_layer/use_cases/user_usecase/logout_usecase.dart';
 import 'package:e_commerce/domain_layer/use_cases/user_usecase/profile_usecase.dart';
@@ -16,11 +19,18 @@ import 'package:get_it/get_it.dart';
 
 import '../../data_layer/repositery/getproductsrepo.dart';
 import '../../domain_layer/repositery/baseporductsrepo.dart';
+import '../../domain_layer/repositery/baseuserrepo/user_repo.dart';
+
+import '../../domain_layer/use_cases/favoritesusecase/addordeletefavorites.dart';
+import '../../domain_layer/use_cases/favoritesusecase/deletefavorites.dart';
+import '../../domain_layer/use_cases/favoritesusecase/getfavorites_usecase.dart';
+import '../../domain_layer/use_cases/getbannersusecase/getbanners.dart';
+import '../../domain_layer/use_cases/productsusecase/porductsusecase.dart';
 
 final gitIt = GetIt.instance;
 
 class ServicesLocator {
-  void init() {
+  void user() {
     gitIt.registerLazySingleton(() => LogOutUseCase(gitIt()));
     gitIt.registerLazySingleton(() => ProFileUseCase(gitIt()));
     gitIt.registerLazySingleton(() => RegisterUseCase(gitIt()));
@@ -52,12 +62,25 @@ class ServicesLocator {
 
     ///domain
 
-    gitIt.registerFactory<BaseGetProductsRepo>(
-        () => GetProductsRepo(gitIt()));
+    gitIt.registerFactory<BaseGetProductsRepo>(() => GetProductsRepo(gitIt()));
 
     /// data
 
     gitIt.registerLazySingleton<BaseGetProductsRemote>(
         () => GetProductsRemote());
+  }
+
+  void favorites(){
+
+
+
+
+    gitIt.registerFactory(() => DeleteFavoritesUseCase(gitIt()));
+    gitIt.registerFactory(() => AddOrDeleteFavoritesUseCase(gitIt()));
+    gitIt.registerFactory(() => GetFavoritesUseCase(gitIt()));
+    gitIt.registerFactory<BaseFavoritesRepo>(() => FavoriteRepo(gitIt()));
+
+    gitIt.registerFactory<BaseFavoritesRemoteServices>(() => FavoritesRemoteServices());
+
   }
 }

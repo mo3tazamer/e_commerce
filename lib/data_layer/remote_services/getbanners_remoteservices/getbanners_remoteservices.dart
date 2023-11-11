@@ -3,7 +3,7 @@ import 'package:e_commerce/core/const/appconst.dart';
 import 'package:e_commerce/core/error/serviceseexception.dart';
 import 'package:e_commerce/data_layer/models/bnnersmodel/bannersmodel.dart';
 
-import '../../core/network/erromessagemodel.dart';
+import '../../../core/network/erromessagemodel.dart';
 
 abstract class BaseGetBannersRemoteServices {
   Future<BannersModel> getBanners();
