@@ -2,16 +2,14 @@ import 'dart:convert';
 
 import 'package:e_commerce/domain_layer/entites/user/user.dart';
 
-
-
 class UserModel extends User {
   UserModel(
       {required super.status, required super.message, required super.data});
 
   factory UserModel.fromMap(Map<String, dynamic> json) {
     return UserModel(
-      data:json['data'] != null  ? DataModel.formMap(json['data']): null,
-      message: json['message'] ,
+      data: json['data'] != null ? DataModel.formMap(json['data']) : null,
+      message: json['message'],
       status: json['status'],
     );
   }

@@ -11,9 +11,5 @@ class LogOutModel extends Equatable {
   }
 
   @override
-
-  List<Object?> get props => [status,message];
+  List<Object?> get props => [status, message];
 }
-
-
-

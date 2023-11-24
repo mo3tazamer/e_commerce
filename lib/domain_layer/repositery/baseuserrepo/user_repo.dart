@@ -9,7 +9,7 @@ abstract class BaseUserRepo {
       required String email,
       required String password,
       required String image});
-  Future<User> postLogIn({required String email,required String password});
+  Future<User> postLogIn({required String email, required String password});
   Future<User> getProfile(String token);
   Future<User> putUpdateProfile(
       {required String name,

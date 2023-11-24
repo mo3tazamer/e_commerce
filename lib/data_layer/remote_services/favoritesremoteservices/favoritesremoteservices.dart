@@ -14,10 +14,9 @@ abstract class BaseFavoritesRemoteServices {
 class FavoritesRemoteServices extends BaseFavoritesRemoteServices {
   @override
   Future<String> addOrDeleteFavorites({required int productId}) async {
-    var response = await Dio(BaseOptions(headers: {
-
-      'Authorization':CacheHelper.getData(key: 'token')
-    })).post(AppConst.addOrDeleteFavorites, data: {"product_id": productId});
+    var response = await Dio(BaseOptions(
+            headers: {'Authorization': CacheHelper.getData(key: 'token')}))
+        .post(AppConst.addOrDeleteFavorites, data: {"product_id": productId});
 
     if (response.statusCode == 200) {
       var getaData = response.data['message'];
@@ -35,10 +34,9 @@ class FavoritesRemoteServices extends BaseFavoritesRemoteServices {
 
   @override
   Future<List<ProductsModel>> getFavorites() async {
-    var response = await Dio(BaseOptions(headers: {
-
-      'Authorization':CacheHelper.getData(key: 'token')
-    })).get(AppConst.getFavorites);
+    var response = await Dio(BaseOptions(
+            headers: {'Authorization': CacheHelper.getData(key: 'token')}))
+        .get(AppConst.getFavorites);
 
     if (response.statusCode == 200) {
       var getData = List.from(response.data['data']['data'])

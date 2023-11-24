@@ -8,7 +8,6 @@ class User extends Equatable {
   User({required this.status, required this.message, required this.data});
 
   @override
-
   List<Object?> get props => [status, message, data];
 }
 

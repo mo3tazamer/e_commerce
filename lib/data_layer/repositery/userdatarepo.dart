@@ -1,7 +1,6 @@
 import 'package:e_commerce/data_layer/models/logoutmodel/logoutmodel.dart';
 import 'package:e_commerce/domain_layer/entites/user/user.dart';
 
-
 import '../../domain_layer/repositery/baseuserrepo/user_repo.dart';
 import '../remote_services/user_remoteservices/user_remote.dart';
 
@@ -16,7 +15,8 @@ class UserDataRepo extends BaseUserRepo {
   }
 
   @override
-  Future<User> postLogIn({required String email, required String password}) async {
+  Future<User> postLogIn(
+      {required String email, required String password}) async {
     return await baseUserRemote.postLogIn(email: email, password: password);
   }
 

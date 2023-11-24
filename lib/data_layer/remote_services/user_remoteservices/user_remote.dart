@@ -88,10 +88,8 @@ class UserRemote extends BaseUserRemote {
     });
     if (response.statusCode == 200) {
       UserModel userdata = UserModel.fromMap(response.data);
-      
-          CacheHelper.saveData(key: 'token', value: userdata.data!.token);
 
-
+      CacheHelper.saveData(key: 'token', value: userdata.data!.token);
 
       return userdata;
     } else {

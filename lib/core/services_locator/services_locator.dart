@@ -8,8 +8,6 @@ import 'package:e_commerce/data_layer/repositery/userdatarepo.dart';
 import 'package:e_commerce/domain_layer/repositery/basefavoritesrepo.dart';
 import 'package:e_commerce/domain_layer/repositery/basegetbannersrepo.dart';
 
-
-
 import 'package:e_commerce/domain_layer/use_cases/user_usecase/login_usecase.dart';
 import 'package:e_commerce/domain_layer/use_cases/user_usecase/logout_usecase.dart';
 import 'package:e_commerce/domain_layer/use_cases/user_usecase/profile_usecase.dart';
@@ -26,6 +24,7 @@ import '../../domain_layer/use_cases/favoritesusecase/deletefavorites.dart';
 import '../../domain_layer/use_cases/favoritesusecase/getfavorites_usecase.dart';
 import '../../domain_layer/use_cases/getbannersusecase/getbanners.dart';
 import '../../domain_layer/use_cases/productsusecase/porductsusecase.dart';
+import '../../domain_layer/use_cases/productsusecase/searchproducts.dart';
 
 final gitIt = GetIt.instance;
 
@@ -59,6 +58,7 @@ class ServicesLocator {
     /// usecase
 
     gitIt.registerLazySingleton(() => GetProductsUseCase(gitIt()));
+    gitIt.registerLazySingleton(() => SearchProductsUseCase(gitIt()));
 
     ///domain
 
@@ -70,17 +70,13 @@ class ServicesLocator {
         () => GetProductsRemote());
   }
 
-  void favorites(){
-
-
-
-
+  void favorites() {
     gitIt.registerFactory(() => DeleteFavoritesUseCase(gitIt()));
     gitIt.registerFactory(() => AddOrDeleteFavoritesUseCase(gitIt()));
     gitIt.registerFactory(() => GetFavoritesUseCase(gitIt()));
     gitIt.registerFactory<BaseFavoritesRepo>(() => FavoriteRepo(gitIt()));
 
-    gitIt.registerFactory<BaseFavoritesRemoteServices>(() => FavoritesRemoteServices());
-
+    gitIt.registerFactory<BaseFavoritesRemoteServices>(
+        () => FavoritesRemoteServices());
   }
 }

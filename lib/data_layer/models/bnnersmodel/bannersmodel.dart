@@ -8,7 +8,9 @@ class BannersModel extends Banners {
     return BannersModel(
         status: json['status'],
         message: json['message'],
-        data: List.from(json['data']).map((e) => BannersDataModel.formMap(e)).toList());
+        data: List.from(json['data'])
+            .map((e) => BannersDataModel.formMap(e))
+            .toList());
   }
 }
 
