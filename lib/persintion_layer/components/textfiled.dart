@@ -13,7 +13,7 @@ class MyTextFiled extends StatelessWidget {
       this.validatorText,
       this.keyboardType,
       this.focusNode2,
-       this.obscureText});
+      this.obscureText});
 
   IconData? prefixIcon;
   IconButton? suffixIcon;
@@ -25,12 +25,12 @@ class MyTextFiled extends StatelessWidget {
   TextEditingController? controller;
   TextInputAction? textInputAction;
   TextInputType? keyboardType;
-  bool? obscureText ;
+  bool? obscureText;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      obscureText: obscureText ?? false ,
+      obscureText: obscureText ?? false,
       validator: (value) {
         if (value == null || value.isEmpty) {
           return validatorText;

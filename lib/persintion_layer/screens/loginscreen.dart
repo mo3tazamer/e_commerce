@@ -81,14 +81,16 @@ class LogInScreen extends StatelessWidget {
               const SizedBox(
                 height: 12,
               ),
-              MyButton(onTap: (){
-                if (_formKey.currentState!.validate()) {
-                  // ScaffoldMessenger.of(context).showSnackBar(
-                  //   const SnackBar(content: Text('Processing Data')),
-                  // );
-                }
-
-              }, buttonText: 'Login',),
+              MyButton(
+                onTap: () {
+                  if (_formKey.currentState!.validate()) {
+                    // ScaffoldMessenger.of(context).showSnackBar(
+                    //   const SnackBar(content: Text('Processing Data')),
+                    // );
+                  }
+                },
+                buttonText: 'Login',
+              ),
               const SizedBox(
                 height: 20,
               ),
