@@ -105,7 +105,7 @@ class RegisterScreen extends StatelessWidget {
                       // );
                     }
                   },
-                  buttonText: 'Register')
+                  buttonText: 'save')
             ]),
           ),
         ),

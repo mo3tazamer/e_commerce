@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class MyTextFiled extends StatelessWidget {
-  MyTextFiled(
+  const MyTextFiled(
       {super.key,
       this.focusNode,
       this.prefixIcon,
@@ -15,17 +15,17 @@ class MyTextFiled extends StatelessWidget {
       this.focusNode2,
       this.obscureText});
 
-  IconData? prefixIcon;
-  IconButton? suffixIcon;
-  String? hintText;
-  String? validatorText;
-  String? labelText;
-  FocusNode? focusNode;
-  FocusNode? focusNode2;
-  TextEditingController? controller;
-  TextInputAction? textInputAction;
-  TextInputType? keyboardType;
-  bool? obscureText;
+  final IconData? prefixIcon;
+  final IconButton? suffixIcon;
+  final String? hintText;
+  final String? validatorText;
+  final String? labelText;
+  final FocusNode? focusNode;
+  final FocusNode? focusNode2;
+  final TextEditingController? controller;
+  final  TextInputAction? textInputAction;
+  final TextInputType? keyboardType;
+  final bool? obscureText;
 
   @override
   Widget build(BuildContext context) {
