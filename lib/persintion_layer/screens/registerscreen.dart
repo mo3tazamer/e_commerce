@@ -30,11 +30,13 @@ class RegisterScreen extends StatelessWidget {
             child:
                 Column(mainAxisAlignment: MainAxisAlignment.center, children: [
               Stack(children: [
-                Container(
+                Container(padding: const EdgeInsets.all(45),
+                  alignment: AlignmentDirectional.centerEnd,
                   height: 165,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      color: Colors.black),
+                      color: Colors.black26),
+                  child:  const Text('upload Image'),
                 ),
                 const Padding(
                   padding: EdgeInsets.all(8.0),
