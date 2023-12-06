@@ -28,7 +28,7 @@ class FavoritesRemoteServices extends BaseFavoritesRemoteServices {
 
   @override
   Future deleteFavorites() {
-    // TODO: implement deleteFavorites
+
     throw UnimplementedError();
   }
 

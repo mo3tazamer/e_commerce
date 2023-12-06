@@ -31,7 +31,7 @@ class UserDataRepo extends BaseUserRepo {
       required String phone,
       required String email,
       required String password,
-      required String image}) async {
+       String? image}) async {
     return await baseUserRemote.postRegister(
         name: name,
         phone: phone,
@@ -46,7 +46,7 @@ class UserDataRepo extends BaseUserRepo {
       required String phone,
       required String email,
       required String password,
-      required String image}) async {
+       String? image}) async {
     return await baseUserRemote.putUpdateProfile(
         name: name,
         phone: phone,

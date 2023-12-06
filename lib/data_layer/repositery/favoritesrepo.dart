@@ -16,7 +16,7 @@ class FavoriteRepo extends BaseFavoritesRepo {
 
   @override
   Future deleteFavorites() {
-    // TODO: implement deleteFavorites
+
     throw UnimplementedError();
   }
 

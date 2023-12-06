@@ -16,7 +16,7 @@ class Data extends Equatable {
   final String phone;
   final String email;
   final int id;
-  final String image;
+  final String? image;
   final String token;
 
   const Data(
@@ -24,7 +24,7 @@ class Data extends Equatable {
       required this.phone,
       required this.email,
       required this.id,
-      required this.image,
+       this.image,
       required this.token});
 
   @override

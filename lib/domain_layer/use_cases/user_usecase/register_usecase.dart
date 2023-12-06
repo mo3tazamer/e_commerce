@@ -11,7 +11,7 @@ class RegisterUseCase {
       required String phone,
       required String email,
       required String password,
-      required String image}) async {
+      String? image}) async {
     return await baseUserRepo.postRegister(
         email: email,
         image: image,

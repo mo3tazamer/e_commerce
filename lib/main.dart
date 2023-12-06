@@ -1,5 +1,9 @@
+import 'package:e_commerce/persintion_layer/contollers/userBloc/userBloc.dart';
+import 'package:e_commerce/persintion_layer/screens/loginscreen.dart';
+
 import 'package:e_commerce/persintion_layer/screens/registerscreen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/cachehelper/cachehelper.dart';
 import 'core/services_locator/services_locator.dart';
@@ -20,14 +24,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return BlocProvider(
+      create: (context) => UserBloc(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        home: const LogInScreen(),
       ),
-      home: RegisterScreen(),
     );
   }
 }

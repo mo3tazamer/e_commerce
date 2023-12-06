@@ -13,7 +13,7 @@ abstract class BaseUserRemote {
       required String phone,
       required String email,
       required String password,
-      required String image});
+       String? image});
   Future<UserModel> postLogIn(
       {required String email, required String password});
   Future<UserModel> getProfile(String token);
@@ -22,7 +22,7 @@ abstract class BaseUserRemote {
       required String phone,
       required String email,
       required String password,
-      required String image});
+       String? image});
   Future<LogOutModel> postLogOut(String token);
 }
 
@@ -49,8 +49,10 @@ class UserRemote extends BaseUserRemote {
 
     if (response.statusCode == 200) {
       var userdata = UserModel.fromMap(response.data);
+      if (userdata.data?.token != null) {
+        CacheHelper.saveData(key: 'token', value: userdata.data!.token);
+      }
 
-      CacheHelper.saveData(key: 'token', value: userdata.data!.token);
       return userdata;
     } else {
       throw ServerException(
@@ -78,7 +80,7 @@ class UserRemote extends BaseUserRemote {
       required String phone,
       required String email,
       required String password,
-      required String image}) async {
+       String? image}) async {
     var response = await Dio().post(AppConst.postRegister, data: {
       'name': name,
       'phone': phone,
@@ -104,7 +106,7 @@ class UserRemote extends BaseUserRemote {
       required String phone,
       required String email,
       required String password,
-      required String image}) async {
+       String? image}) async {
     var response = await Dio().post(
       AppConst.putUpdateProfile,
       options: Options(headers: {

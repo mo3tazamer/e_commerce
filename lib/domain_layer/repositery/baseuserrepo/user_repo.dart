@@ -8,7 +8,7 @@ abstract class BaseUserRepo {
       required String phone,
       required String email,
       required String password,
-      required String image});
+       String? image});
   Future<User> postLogIn({required String email, required String password});
   Future<User> getProfile(String token);
   Future<User> putUpdateProfile(
@@ -16,6 +16,6 @@ abstract class BaseUserRepo {
       required String phone,
       required String email,
       required String password,
-      required String image});
+       String? image});
   Future<LogOutModel> postLogOut(var token);
 }

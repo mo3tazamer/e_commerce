@@ -8,7 +8,7 @@ class Banners extends Equatable {
   Banners({required this.status, required this.message, required this.data});
 
   @override
-  // TODO: implement props
+
   List<Object?> get props => [status, message, data];
 }
 
@@ -19,7 +19,7 @@ class BannersData extends Equatable {
   String? product;
 
   @override
-  // TODO: implement props
+
   List<Object?> get props => [id, image, category, product];
 
   BannersData(
