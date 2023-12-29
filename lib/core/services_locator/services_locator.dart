@@ -5,6 +5,7 @@ import 'package:e_commerce/data_layer/remote_services/user_remoteservices/user_r
 import 'package:e_commerce/data_layer/repositery/favoritesrepo.dart';
 import 'package:e_commerce/data_layer/repositery/getbannersrepo.dart';
 import 'package:e_commerce/data_layer/repositery/userdatarepo.dart';
+
 import 'package:e_commerce/domain_layer/repositery/basefavoritesrepo.dart';
 import 'package:e_commerce/domain_layer/repositery/basegetbannersrepo.dart';
 
@@ -15,10 +16,14 @@ import 'package:e_commerce/domain_layer/use_cases/user_usecase/register_usecase.
 import 'package:e_commerce/domain_layer/use_cases/user_usecase/updateprofile_usecase.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../data_layer/remote_services/getcategoriesremoteservices/categoriesremoteservices.dart';
+import '../../data_layer/repositery/getcategoriesrepo.dart';
 import '../../data_layer/repositery/getproductsrepo.dart';
+import '../../domain_layer/repositery/basecategoriesrepo/basecategoriesrepo.dart';
 import '../../domain_layer/repositery/baseporductsrepo.dart';
 import '../../domain_layer/repositery/baseuserrepo/user_repo.dart';
 
+import '../../domain_layer/use_cases/categoriesusecse/categoriesusecase.dart';
 import '../../domain_layer/use_cases/favoritesusecase/addordeletefavorites.dart';
 import '../../domain_layer/use_cases/favoritesusecase/deletefavorites.dart';
 import '../../domain_layer/use_cases/favoritesusecase/getfavorites_usecase.dart';
@@ -79,4 +84,19 @@ class ServicesLocator {
     gitIt.registerFactory<BaseFavoritesRemoteServices>(
         () => FavoritesRemoteServices());
   }
+  void categories() {
+    /// usecase
+
+    gitIt.registerLazySingleton(
+            () => CategoriesUseCase( gitIt()));
+
+    ///domain
+    gitIt.registerLazySingleton<BaseCategoriesRepo>(
+            () => CategoriesRipo(gitIt()));
+
+    /// data
+    gitIt.registerLazySingleton<BaseCategoriesRemoteServices>(
+            () => CategoriesRemoteServices());
+  }
+
 }

@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class Products extends Equatable {
-  int? id;
+  dynamic? id;
   dynamic? price;
   dynamic? oldPrice;
   int? discount;
@@ -24,5 +24,5 @@ class Products extends Equatable {
 
   @override
   List<Object?> get props =>
-      [id, price, oldPrice, discount, image, name, description];
+      [id, price, oldPrice, discount, image, name, description,inFavorites,inCart];
 }

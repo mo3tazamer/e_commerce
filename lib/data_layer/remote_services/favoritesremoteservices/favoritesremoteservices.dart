@@ -38,10 +38,16 @@ class FavoritesRemoteServices extends BaseFavoritesRemoteServices {
             headers: {'Authorization': CacheHelper.getData(key: 'token')}))
         .get(AppConst.getFavorites);
 
+
     if (response.statusCode == 200) {
       var getData = List.from(response.data['data']['data'])
-          .map((e) => ProductsModel.formMap(e['product']))
+          .map((e) {
+
+            return ProductsModel.formMap(e['product']);
+
+          })
           .toList();
+
       return getData;
     } else {
       throw ServerException(errorMessageModel: response.data);

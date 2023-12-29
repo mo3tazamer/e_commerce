@@ -17,7 +17,7 @@ class CategoriesRemoteServices extends BaseCategoriesRemoteServices {
 
     if (response.statusCode == 200) {
       var getData = CategoriesModel.formMap(response.data);
-      print(getData);
+
 
       return getData;
     } else {

@@ -6,7 +6,7 @@ class GetBannersUseCase {
 
   GetBannersUseCase({required this.baseGetBannersRepo});
 
-  Future<Banners?> excute() async {
+  Future<Banners> excute() async {
     return await baseGetBannersRepo.getBannersRepo();
   }
 }
