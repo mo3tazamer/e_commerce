@@ -7,7 +7,7 @@ import 'package:e_commerce/persintion_layer/screens/getFavorites.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../components/searchFiled.dart';
+import '../components/search_Filed.dart';
 
 // ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
@@ -200,8 +200,7 @@ class HomeScreen extends StatelessWidget {
                                                       .getProducts![index].id));
                                           //BlocProvider.of<HomeBloc>(context).add(MainPage());
                                         },
-                                        icon:
-                                        state is! IsFavSuccess &&
+                                        icon: state is! IsFavSuccess &&
                                                 item == index
                                             ? const SizedBox(
                                                 height: 12,
@@ -211,8 +210,7 @@ class HomeScreen extends StatelessWidget {
                                                   color: Colors.black,
                                                   strokeWidth: 1,
                                                 ))
-                                            :
-                                        Icon(HomeBloc.fav[HomeBloc
+                                            : Icon(HomeBloc.fav[HomeBloc
                                                         .getProducts![index]
                                                         .id] ==
                                                     false

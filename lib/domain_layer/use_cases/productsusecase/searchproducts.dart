@@ -1,5 +1,5 @@
 import 'package:e_commerce/domain_layer/entites/products/products.dart';
-import 'package:e_commerce/domain_layer/repositery/baseporductsrepo.dart';
+import 'package:e_commerce/domain_layer/repositery/base_porducts_repo.dart';
 
 class SearchProductsUseCase {
   BaseGetProductsRepo baseGetProductsRepo;

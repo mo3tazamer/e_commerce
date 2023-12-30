@@ -1,8 +1,9 @@
-import 'package:e_commerce/data_layer/models/productsmodel/productsmodel.dart';
-import 'package:e_commerce/data_layer/remote_services/getproducts_remoteservices/getproducts_remoteservices.dart';
+
+
 
 import '../../domain_layer/entites/products/products.dart';
-import '../../domain_layer/repositery/baseporductsrepo.dart';
+import '../../domain_layer/repositery/base_porducts_repo.dart';
+import '../remote_services/getproducts_remote_services/getproducts_remote_services.dart';
 
 class GetProductsRepo extends BaseGetProductsRepo {
   BaseGetProductsRemote baseGetProductsRemote;

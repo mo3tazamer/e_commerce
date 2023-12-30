@@ -1,6 +1,7 @@
 import 'package:e_commerce/domain_layer/entites/banners/banners.dart';
-import 'package:e_commerce/domain_layer/repositery/basegetbannersrepo.dart';
-import '../remote_services/getbanners_remoteservices/getbanners_remoteservices.dart';
+import 'package:e_commerce/domain_layer/repositery/base_getbanner_srepo.dart';
+import '../remote_services/getbanners_remote_services/getbanners_remote_services.dart';
+
 
 class GetBannersRepo extends BaseGetBannersRepo {
   BaseGetBannersRemoteServices baseGetBannersRemoteServices;

@@ -1,13 +1,11 @@
-import 'package:e_commerce/data_layer/remote_services/favoritesremoteservices/favoritesremoteservices.dart';
-import 'package:e_commerce/data_layer/remote_services/getbanners_remoteservices/getbanners_remoteservices.dart';
-import 'package:e_commerce/data_layer/remote_services/getproducts_remoteservices/getproducts_remoteservices.dart';
-import 'package:e_commerce/data_layer/remote_services/user_remoteservices/user_remote.dart';
-import 'package:e_commerce/data_layer/repositery/favoritesrepo.dart';
-import 'package:e_commerce/data_layer/repositery/getbannersrepo.dart';
-import 'package:e_commerce/data_layer/repositery/userdatarepo.dart';
 
-import 'package:e_commerce/domain_layer/repositery/basefavoritesrepo.dart';
-import 'package:e_commerce/domain_layer/repositery/basegetbannersrepo.dart';
+
+import 'package:e_commerce/data_layer/repositery/favorites_repo.dart';
+import 'package:e_commerce/data_layer/repositery/getbanners_repo.dart';
+import 'package:e_commerce/data_layer/repositery/user_data_repo.dart';
+
+import 'package:e_commerce/domain_layer/repositery/base_favorites_repo.dart';
+import 'package:e_commerce/domain_layer/repositery/base_getbanner_srepo.dart';
 
 import 'package:e_commerce/domain_layer/use_cases/user_usecase/login_usecase.dart';
 import 'package:e_commerce/domain_layer/use_cases/user_usecase/logout_usecase.dart';
@@ -16,12 +14,18 @@ import 'package:e_commerce/domain_layer/use_cases/user_usecase/register_usecase.
 import 'package:e_commerce/domain_layer/use_cases/user_usecase/updateprofile_usecase.dart';
 import 'package:get_it/get_it.dart';
 
-import '../../data_layer/remote_services/getcategoriesremoteservices/categoriesremoteservices.dart';
-import '../../data_layer/repositery/getcategoriesrepo.dart';
-import '../../data_layer/repositery/getproductsrepo.dart';
-import '../../domain_layer/repositery/basecategoriesrepo/basecategoriesrepo.dart';
-import '../../domain_layer/repositery/baseporductsrepo.dart';
-import '../../domain_layer/repositery/baseuserrepo/user_repo.dart';
+import '../../data_layer/remote_services/favorites_remote_services/favorites_remote_services.dart';
+import '../../data_layer/remote_services/getbanners_remote_services/getbanners_remote_services.dart';
+import '../../data_layer/remote_services/getcategories_remote_services/categoriesremoteservices.dart';
+
+import '../../data_layer/remote_services/getproducts_remote_services/getproducts_remote_services.dart';
+import '../../data_layer/remote_services/user_remote_services/user_remote.dart';
+import '../../data_layer/repositery/getcategories_repo.dart';
+import '../../data_layer/repositery/getproducts_repo.dart';
+import '../../domain_layer/repositery/base_user_repo/user_repo.dart';
+import '../../domain_layer/repositery/basecategoriesrepo/base_categories_repo.dart';
+import '../../domain_layer/repositery/base_porducts_repo.dart';
+
 
 import '../../domain_layer/use_cases/categoriesusecse/categoriesusecase.dart';
 import '../../domain_layer/use_cases/favoritesusecase/addordeletefavorites.dart';

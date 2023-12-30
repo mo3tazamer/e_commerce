@@ -1,5 +1,5 @@
 import '../../entites/products/products.dart';
-import '../../repositery/baseporductsrepo.dart';
+import '../../repositery/base_porducts_repo.dart';
 
 class GetProductsUseCase {
   BaseGetProductsRepo baseProductsRepo;

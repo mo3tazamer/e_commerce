@@ -1,5 +1,5 @@
 import 'package:e_commerce/persintion_layer/components/my_button.dart';
-import 'package:e_commerce/persintion_layer/components/textfiled.dart';
+import 'package:e_commerce/persintion_layer/components/my_textfiled.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatelessWidget {

@@ -1,7 +1,8 @@
 import 'package:e_commerce/domain_layer/entites/products/products.dart';
-import 'package:e_commerce/domain_layer/repositery/basefavoritesrepo.dart';
+import 'package:e_commerce/domain_layer/repositery/base_favorites_repo.dart';
 
-import '../remote_services/favoritesremoteservices/favoritesremoteservices.dart';
+import '../remote_services/favorites_remote_services/favorites_remote_services.dart';
+
 
 class FavoriteRepo extends BaseFavoritesRepo {
   BaseFavoritesRemoteServices baseFavoritesRemoteServices;

@@ -1,4 +1,4 @@
-import '../../repositery/basefavoritesrepo.dart';
+import '../../repositery/base_favorites_repo.dart';
 
 class DeleteFavoritesUseCase {
   BaseFavoritesRepo baseFavoritesRepo;

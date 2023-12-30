@@ -1,8 +1,8 @@
 import 'package:e_commerce/data_layer/models/logoutmodel/logoutmodel.dart';
 import 'package:e_commerce/domain_layer/entites/user/user.dart';
 
-import '../../domain_layer/repositery/baseuserrepo/user_repo.dart';
-import '../remote_services/user_remoteservices/user_remote.dart';
+import '../../domain_layer/repositery/base_user_repo/user_repo.dart';
+import '../remote_services/user_remote_services/user_remote.dart';
 
 class UserDataRepo extends BaseUserRepo {
   BaseUserRemote baseUserRemote;
@@ -31,7 +31,7 @@ class UserDataRepo extends BaseUserRepo {
       required String phone,
       required String email,
       required String password,
-       String? image}) async {
+      String? image}) async {
     return await baseUserRemote.postRegister(
         name: name,
         phone: phone,
@@ -46,7 +46,7 @@ class UserDataRepo extends BaseUserRepo {
       required String phone,
       required String email,
       required String password,
-       String? image}) async {
+      String? image}) async {
     return await baseUserRemote.putUpdateProfile(
         name: name,
         phone: phone,
