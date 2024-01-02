@@ -6,6 +6,9 @@ import '../screens/get_favorites.dart';
 import 'my_searchFiled.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
+  @override
+
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
   const HomeAppBar({super.key});
   static bool showBadge = false;
 
@@ -56,8 +59,4 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       ],
     );
   }
-
-  @override
-  // TODO: implement preferredSize
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
