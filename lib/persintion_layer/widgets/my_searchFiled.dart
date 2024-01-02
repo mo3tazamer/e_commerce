@@ -1,10 +1,12 @@
+
+
 import 'package:flutter/material.dart';
 
 class SearchField extends StatelessWidget {
-  TextEditingController? controller;
-  String? hintText;
+ final TextEditingController? controller;
+ final String? hintText;
 
-  SearchField({super.key, this.controller, this.hintText});
+const  SearchField({super.key, this.controller, this.hintText});
 
   @override
   Widget build(BuildContext context) {

@@ -3,7 +3,7 @@ import 'package:e_commerce/core/cachehelper/cachehelper.dart';
 import 'package:e_commerce/core/const/appconst.dart';
 import 'package:e_commerce/core/error/serviceseexception.dart';
 
-import '../../../domain_layer/entites/products/products.dart';
+
 import '../../models/productsmodel/productsmodel.dart';
 
 abstract class BaseGetProductsRemote {

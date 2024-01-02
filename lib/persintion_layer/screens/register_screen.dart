@@ -1,12 +1,14 @@
-import 'package:e_commerce/persintion_layer/components/my_button.dart';
-import 'package:e_commerce/persintion_layer/components/my_textfiled.dart';
+
 import 'package:e_commerce/persintion_layer/contollers/userBloc/userBloc.dart';
 import 'package:e_commerce/persintion_layer/contollers/userBloc/userEvents.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../components/my_snakebar.dart';
+
 import '../contollers/userBloc/userStates.dart';
+import '../widgets/my_button.dart';
+import '../widgets/my_snakebar.dart';
+import '../widgets/my_textfiled.dart';
 
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({super.key});

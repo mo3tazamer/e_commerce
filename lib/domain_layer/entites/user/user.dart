@@ -1,11 +1,11 @@
 import 'package:equatable/equatable.dart';
 
 class User extends Equatable {
-  bool status;
-  String? message;
-  Data? data;
+  final bool status;
+  final String? message;
+ final Data? data;
 
-  User({required this.status, required this.message, required this.data});
+ const User({required this.status, required this.message, required this.data});
 
   @override
   List<Object?> get props => [status, message, data];

@@ -10,19 +10,19 @@ class HomeLoading extends HomeState {}
 class HomeSuccess extends HomeState {}
 
 class HomeError extends HomeState {
-  String error;
+ final String error;
 
   HomeError({required this.error});
 }
 
 class IsFavSuccess extends HomeState {
-  String message;
+  final String message;
 
   IsFavSuccess(this.message);
 }
 
 class IsFavError extends HomeState {
-  String error;
+ final String error;
 
   IsFavError({required this.error});
 }
@@ -30,7 +30,7 @@ class IsFavError extends HomeState {
 class GetFavoritesSuccess extends HomeState {}
 
 class GetFavoritesError extends HomeState {
-  String error;
+ final String error;
 
   GetFavoritesError({required this.error});
 }

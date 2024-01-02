@@ -1,7 +1,7 @@
 import 'package:e_commerce/domain_layer/entites/banners/banners.dart';
 
 class BannersModel extends Banners {
-  BannersModel(
+  const BannersModel(
       {required super.status, required super.message, required super.data});
 
   factory BannersModel.formMap(Map<String, dynamic> json) {
@@ -15,7 +15,7 @@ class BannersModel extends Banners {
 }
 
 class BannersDataModel extends BannersData {
-  BannersDataModel(
+  const BannersDataModel(
       {required super.id,
       required super.image,
       required super.category,

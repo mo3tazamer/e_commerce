@@ -1,16 +1,15 @@
-// ignore_for_file: must_be_immutable
 
 import 'package:e_commerce/persintion_layer/contollers/home_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../components/my_snakebar.dart';
+
 
 class GetFavorite extends StatelessWidget {
-  GetFavorite({super.key});
+ const GetFavorite({super.key});
 
-  int item = -1;
+
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +18,7 @@ class GetFavorite extends StatelessWidget {
 
       },
       builder: (context, state) {
+
         return Scaffold(
           body: HomeBloc.getFavorites != null && HomeBloc.getFavorites!.isNotEmpty
               ? Column(

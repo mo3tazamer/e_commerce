@@ -21,7 +21,7 @@ class CategoriesRemoteServices extends BaseCategoriesRemoteServices {
 
       return getData;
     } else {
-      print('done');
+
       throw ServerException(errorMessageModel: response.data);
     }
   }

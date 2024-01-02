@@ -1,7 +1,7 @@
 import '../../../domain_layer/entites/categories/categories.dart';
 
 class CategoriesModel extends Categories {
-  CategoriesModel(
+  const CategoriesModel(
       {required super.status, required super.message, required super.data});
 
   factory CategoriesModel.formMap(Map<String, dynamic> json) {
@@ -15,7 +15,7 @@ class CategoriesModel extends Categories {
 }
 
 class CategoriesDataModel extends CategoriesData {
-  CategoriesDataModel(
+  const CategoriesDataModel(
       {required super.id, required super.name, required super.image});
 
   factory CategoriesDataModel.formMap(Map<String, dynamic> json) {

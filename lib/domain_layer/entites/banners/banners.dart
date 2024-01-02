@@ -1,11 +1,11 @@
 import 'package:equatable/equatable.dart';
 
 class Banners extends Equatable {
-  bool? status;
-  String? message;
-  List<BannersData> data;
+  final bool? status;
+ final String? message;
+  final List<BannersData> data;
 
-  Banners({required this.status, required this.message, required this.data});
+ const Banners({required this.status, required this.message, required this.data});
 
   @override
 
@@ -13,16 +13,16 @@ class Banners extends Equatable {
 }
 
 class BannersData extends Equatable {
-  int id;
-  String image;
-  String? category;
-  String? product;
+ final int id;
+ final String image;
+ final String? category;
+ final String? product;
 
   @override
 
   List<Object?> get props => [id, image, category, product];
 
-  BannersData(
+const  BannersData(
       {required this.id,
       required this.image,
       required this.category,

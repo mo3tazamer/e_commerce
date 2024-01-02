@@ -49,6 +49,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
           emit(GetFavoritesSuccess());
         } catch (e) {
+
           emit(GetFavoritesError(error: e.toString()));
         }
       }
@@ -80,7 +81,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
   // @override
   // void onChange(Change<HomeState> change) {
-  //   // TODO: implement onChange
+
   //   super.onChange(change);
   //   if (kDebugMode) {
   //     print(change);

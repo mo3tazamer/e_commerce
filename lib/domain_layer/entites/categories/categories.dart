@@ -1,11 +1,11 @@
 import 'package:equatable/equatable.dart';
 
 class Categories extends Equatable {
-  bool status;
-  String? message;
-  List<CategoriesData> data;
+ final bool status;
+  final String? message;
+ final List<CategoriesData> data;
 
-  Categories({required this.status, required this.message, required this.data});
+ const Categories({required this.status, required this.message, required this.data});
 
   @override
 
@@ -13,11 +13,11 @@ class Categories extends Equatable {
 }
 
 class CategoriesData extends Equatable {
-  int id;
-  String name;
-  String image;
+final  int id;
+ final String name;
+ final String image;
 
-  CategoriesData({required this.id, required this.name, required this.image});
+ const CategoriesData({required this.id, required this.name, required this.image});
 
   @override
 

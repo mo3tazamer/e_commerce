@@ -1,9 +1,9 @@
-import 'dart:convert';
+
 
 import 'package:e_commerce/domain_layer/entites/user/user.dart';
 
 class UserModel extends User {
-  UserModel(
+  const UserModel(
       {required super.status, required super.message, required super.data});
 
   factory UserModel.fromMap(Map<String, dynamic> json) {

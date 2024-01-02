@@ -1,5 +1,5 @@
-import 'package:e_commerce/persintion_layer/components/my_button.dart';
-import 'package:e_commerce/persintion_layer/components/my_snakebar.dart';
+
+
 import 'package:e_commerce/persintion_layer/contollers/userBloc/userBloc.dart';
 import 'package:e_commerce/persintion_layer/contollers/userBloc/userEvents.dart';
 import 'package:e_commerce/persintion_layer/contollers/userBloc/userStates.dart';
@@ -7,8 +7,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../components/my_imagelogo.dart';
-import '../components/my_textfiled.dart';
+
+
+import '../widgets/my_button.dart';
+import '../widgets/my_imagelogo.dart';
+import '../widgets/my_snakebar.dart';
+import '../widgets/my_textfiled.dart';
 
 class LogInScreen extends StatelessWidget {
   const LogInScreen({super.key});
@@ -19,7 +23,7 @@ class LogInScreen extends StatelessWidget {
     final FocusNode textField2Focus = FocusNode();
     final TextEditingController controller1 = TextEditingController();
     final TextEditingController controller2 = TextEditingController();
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
     bool obscureText = true;
 
     return BlocConsumer<UserBloc, UserStates>(
@@ -36,7 +40,7 @@ class LogInScreen extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(15.0),
               child: Form(
-                key: _formKey,
+                key: formKey,
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -99,7 +103,7 @@ class LogInScreen extends StatelessWidget {
                           ? const CircularProgressIndicator()
                           : MyButton(
                               onTap: () {
-                                if (_formKey.currentState!.validate()) {
+                                if (formKey.currentState!.validate()) {
                                   BlocProvider.of<UserBloc>(context).add(
                                       LogInUserEvent(
                                           email: controller1.text,
