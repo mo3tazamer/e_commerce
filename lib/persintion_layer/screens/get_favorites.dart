@@ -7,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 
 class GetFavorite extends StatelessWidget {
-  GetFavorite({super.key});
+  const GetFavorite({super.key});
 
 
 
