@@ -1,13 +1,11 @@
-
-
 import 'package:e_commerce/persintion_layer/contollers/userBloc/userBloc.dart';
 import 'package:e_commerce/persintion_layer/contollers/userBloc/userEvents.dart';
 import 'package:e_commerce/persintion_layer/contollers/userBloc/userStates.dart';
+import 'package:e_commerce/persintion_layer/screens/home.dart';
+import 'package:e_commerce/persintion_layer/screens/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-
 
 import '../widgets/my_button.dart';
 import '../widgets/my_imagelogo.dart';
@@ -29,8 +27,12 @@ class LogInScreen extends StatelessWidget {
     return BlocConsumer<UserBloc, UserStates>(
       listener: (context, state) {
         if (state is LogInUserSuccess) {
-          //print(state);
           mySnakeBar(message: '${state.user.message}', context: context);
+          Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const HomeScreen(),
+              ));
         }
       },
       builder: (context, state) {
@@ -160,7 +162,11 @@ class LogInScreen extends StatelessWidget {
                             width: 5,
                           ),
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                context,MaterialPageRoute(builder: (context) => RegisterScreen(),)
+                              );
+                            },
                             child: const Text(
                               'Register Now',
                               style: TextStyle(

@@ -20,11 +20,14 @@ class HomeScreen extends StatelessWidget {
         }
         if (state is GetFavoritesSuccess) {
           HomeAppBar.showBadge = true;
+        }if (state is HomeSuccess) {
+
+
         }
       },
       builder: (context, state) {
         return Scaffold(
-            appBar: const HomeAppBar(),
+            appBar:  HomeAppBar(),
             body: HomeBloc.getBanners != null &&
                     HomeBloc.getProducts != null &&
                     HomeBloc.categories != null

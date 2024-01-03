@@ -49,8 +49,10 @@ class UserRemote extends BaseUserRemote {
 
     if (response.statusCode == 200) {
       var userdata = UserModel.fromMap(response.data);
+      //print(userdata.data?.token);
       if (userdata.data?.token != null) {
         CacheHelper.saveData(key: 'token', value: userdata.data!.token);
+
       }
 
       return userdata;

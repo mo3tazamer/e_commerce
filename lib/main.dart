@@ -3,6 +3,7 @@ import 'package:e_commerce/persintion_layer/contollers/home_bloc.dart';
 import 'package:e_commerce/persintion_layer/contollers/userBloc/userBloc.dart';
 import 'package:e_commerce/persintion_layer/contollers/userBloc/userEvents.dart';
 import 'package:e_commerce/persintion_layer/screens/home.dart';
+import 'package:e_commerce/persintion_layer/screens/login_screen.dart';
 import 'package:flutter/foundation.dart';
 
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'core/cachehelper/cachehelper.dart';
+import 'core/const/appconst.dart';
 import 'core/services_locator/services_locator.dart';
 
 void main() async {
@@ -19,13 +21,12 @@ void main() async {
   ServicesLocator().products();
   ServicesLocator().favorites();
   ServicesLocator().categories();
-
   await CacheHelper.init();
 
-  var token = await CacheHelper.getData(key: 'token');
-  if (kDebugMode) {
-    print(token);
-  }
+  //  var token = await CacheHelper.getData(key: 'token');
+  // if (kDebugMode) {
+  //    print(token);
+  //  }
   runApp(DevicePreview(
     enabled: !kReleaseMode,
     builder: (context) => const MyApp(),
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => UserBloc()..add(ProFileUserEvent())),
+        BlocProvider(create: (context) => UserBloc()),
         BlocProvider(
             lazy: false,
             create: (context) => HomeBloc()
@@ -60,7 +61,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: HomeScreen(),
+          home: CacheHelper.getData(key: 'token') != null ? const HomeScreen() : const LogInScreen(),
         ),
       ),
     );

@@ -7,13 +7,14 @@ import 'package:google_fonts/google_fonts.dart';
 
 
 class GetFavorite extends StatelessWidget {
- const GetFavorite({super.key});
+  GetFavorite({super.key});
 
 
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HomeBloc, HomeState>(
+      buildWhen: (previous, current) => current is IsFavSuccess,
       listener: (context, state) {
 
       },
