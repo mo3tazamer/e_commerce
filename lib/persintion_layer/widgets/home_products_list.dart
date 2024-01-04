@@ -5,9 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../contollers/home_bloc.dart';
 
 class HomeProductsList extends StatelessWidget {
-  HomeProductsList({super.key});
-  HomeState? state;
-  int item = -1;
+  HomeProductsList({super.key, required this.state});
+  HomeState state;
 
   @override
   Widget build(BuildContext context) {
@@ -69,24 +68,14 @@ class HomeProductsList extends StatelessWidget {
               const Spacer(),
               IconButton(
                   onPressed: () {
-                    item = index;
-
                     BlocProvider.of<HomeBloc>(context)
                         .add(InFav(favId: HomeBloc.getProducts![index].id));
                     //BlocProvider.of<HomeBloc>(context).add(MainPage());
                   },
-                  icon: state is! IsFavSuccess && item == index
-                      ? SizedBox(
-                          height: 12.h,
-                          width: 12.w,
-                          child: const CircularProgressIndicator(
-                            color: Colors.black,
-                            strokeWidth: 1,
-                          ))
-                      : Icon(
-                          HomeBloc.fav[HomeBloc.getProducts![index].id] == false
-                              ? Icons.favorite_border
-                              : Icons.favorite))
+                  icon: Icon(
+                      HomeBloc.fav[HomeBloc.getProducts![index].id] == false
+                          ? Icons.favorite_border
+                          : Icons.favorite))
             ],
           ),
         ],

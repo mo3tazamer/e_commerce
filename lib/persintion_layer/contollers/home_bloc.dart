@@ -8,6 +8,7 @@ import 'package:e_commerce/domain_layer/use_cases/getbannersusecase/getbanners.d
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../core/cachehelper/cachehelper.dart';
 import '../../domain_layer/entites/products/products.dart';
 import '../../domain_layer/use_cases/favoritesusecase/addordeletefavorites.dart';
 import '../../domain_layer/use_cases/favoritesusecase/getfavorites_usecase.dart';
@@ -21,6 +22,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   static Categories? categories;
   static List<Products>? getProducts;
   static List<Products>? getFavorites;
+
   static Map<int, bool> fav = {};
 
   HomeBloc() : super(HomeInitial()) {
@@ -44,9 +46,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
       ////////////////////////////////////
       else if (event is GetFavorites) {
+        emit(GetFavoritesLoading());
         try {
           getFavorites = await GetFavoritesUseCase(gitIt()).excute();
-
+          CacheHelper.saveData(key: 'favorites', value: getFavorites?.length);
           emit(GetFavoritesSuccess());
         } catch (e) {
 
@@ -62,7 +65,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           var fav = await AddOrDeleteFavoritesUseCase(gitIt())
               .excute(productId: (event.favId)!);
           getFavorites = await GetFavoritesUseCase(gitIt()).excute();
-
+          CacheHelper.saveData(key: 'favorites', value: getFavorites?.length);
           emit(IsFavSuccess(fav));
         } catch (e) {
           fav[event.favId!] = !fav[event.favId]!;
@@ -75,9 +78,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   @override
   void onTransition(Transition<HomeEvent, HomeState> transition) {
     super.onTransition(transition);
-    if (kDebugMode) {
+
       print(transition);
-    }
+
   }
   // @override
   // void onChange(Change<HomeState> change) {

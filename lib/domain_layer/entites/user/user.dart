@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 class User extends Equatable {
   final bool status;
   final String? message;
- final Data? data;
+  final Data? data;
 
  const User({required this.status, required this.message, required this.data});
 

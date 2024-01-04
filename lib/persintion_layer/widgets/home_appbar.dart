@@ -9,8 +9,8 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
 
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
-   HomeAppBar({super.key});
-  static bool showBadge = false;
+   HomeAppBar({super.key,});
+  static bool showBadge=false;
 
 
   @override
@@ -48,7 +48,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) =>  GetFavorite(),
+                      builder: (context) =>  const GetFavorite(),
                     ));
               },
               icon: const Icon(

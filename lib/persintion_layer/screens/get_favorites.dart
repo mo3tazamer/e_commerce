@@ -14,14 +14,15 @@ class GetFavorite extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HomeBloc, HomeState>(
-      buildWhen: (previous, current) => current is IsFavSuccess,
+
+
       listener: (context, state) {
 
       },
       builder: (context, state) {
 
         return Scaffold(
-          body: HomeBloc.getFavorites != null && HomeBloc.getFavorites!.isNotEmpty
+          body: HomeBloc.getFavorites != null
               ? Column(
                 children: [
                   const SizedBox(height: 50,),

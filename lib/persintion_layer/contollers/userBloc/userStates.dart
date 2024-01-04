@@ -14,8 +14,8 @@ class LogInUserSuccess extends UserStates {
   LogInUserSuccess({required this.user});
 }
 
-class LogInUsererror extends UserStates {
+class LogInUserError extends UserStates {
   final String error;
 
-  LogInUsererror(this.error);
+  LogInUserError(this.error);
 }

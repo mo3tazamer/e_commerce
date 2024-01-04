@@ -26,7 +26,7 @@ class IsFavError extends HomeState {
 
   IsFavError({required this.error});
 }
-
+class GetFavoritesLoading extends HomeState {}
 class GetFavoritesSuccess extends HomeState {}
 
 class GetFavoritesError extends HomeState {

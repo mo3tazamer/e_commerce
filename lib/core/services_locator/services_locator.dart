@@ -71,7 +71,7 @@ class ServicesLocator {
 
     ///domain
 
-    gitIt.registerFactory<BaseGetProductsRepo>(() => GetProductsRepo(gitIt()));
+    gitIt.registerLazySingleton<BaseGetProductsRepo>(() => GetProductsRepo(gitIt()));
 
     /// data
 
@@ -80,12 +80,12 @@ class ServicesLocator {
   }
 
   void favorites() {
-    gitIt.registerFactory(() => DeleteFavoritesUseCase(gitIt()));
-    gitIt.registerFactory(() => AddOrDeleteFavoritesUseCase(gitIt()));
-    gitIt.registerFactory(() => GetFavoritesUseCase(gitIt()));
-    gitIt.registerFactory<BaseFavoritesRepo>(() => FavoriteRepo(gitIt()));
+    gitIt.registerLazySingleton(() => DeleteFavoritesUseCase(gitIt()));
+    gitIt.registerLazySingleton(() => AddOrDeleteFavoritesUseCase(gitIt()));
+    gitIt.registerLazySingleton(() => GetFavoritesUseCase(gitIt()));
+    gitIt.registerLazySingleton<BaseFavoritesRepo>(() => FavoriteRepo(gitIt()));
 
-    gitIt.registerFactory<BaseFavoritesRemoteServices>(
+    gitIt.registerLazySingleton<BaseFavoritesRemoteServices>(
         () => FavoritesRemoteServices());
   }
   void categories() {

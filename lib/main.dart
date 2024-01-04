@@ -1,7 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:e_commerce/persintion_layer/contollers/home_bloc.dart';
 import 'package:e_commerce/persintion_layer/contollers/userBloc/userBloc.dart';
-import 'package:e_commerce/persintion_layer/contollers/userBloc/userEvents.dart';
+
 import 'package:e_commerce/persintion_layer/screens/home.dart';
 import 'package:e_commerce/persintion_layer/screens/login_screen.dart';
 import 'package:flutter/foundation.dart';
@@ -11,7 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'core/cachehelper/cachehelper.dart';
-import 'core/const/appconst.dart';
+
 import 'core/services_locator/services_locator.dart';
 
 void main() async {
@@ -41,14 +41,12 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => UserBloc()),
-        BlocProvider(
-            lazy: false,
-            create: (context) => HomeBloc()
-              ..add(GetFavorites())
-              ..add(MainPage())),
+
+        BlocProvider(lazy: false,
+            create: (context) => HomeBloc()..add(MainPage())
+              ),
       ],
       child: ScreenUtilInit(
-
         designSize: const Size(360, 690),
         minTextAdapt: true,
         splitScreenMode: true,
@@ -61,10 +59,13 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: CacheHelper.getData(key: 'token') != null ? const HomeScreen() : const LogInScreen(),
+          home:
+
+          CacheHelper.getData(key: 'token') != null
+              ?  HomeScreen()
+              : const LogInScreen(),
         ),
       ),
     );
   }
 }
-
