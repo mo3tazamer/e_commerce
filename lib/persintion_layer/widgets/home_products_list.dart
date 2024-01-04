@@ -5,8 +5,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../contollers/home_bloc.dart';
 
 class HomeProductsList extends StatelessWidget {
-  HomeProductsList({super.key, required this.state});
-  HomeState state;
+  const HomeProductsList({super.key,});
+
 
   @override
   Widget build(BuildContext context) {

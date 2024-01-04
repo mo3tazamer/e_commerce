@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../core/cachehelper/cachehelper.dart';
-import '../widgets/home_appbar.dart';
 
 import '../widgets/home_carousal_slider.dart';
 import '../widgets/home_categories_list.dart';
@@ -14,30 +13,24 @@ import '../widgets/my_snakebar.dart';
 import 'package:badges/badges.dart' as badges;
 
 import 'get_favorites.dart';
-
+//ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
-  bool showBadge = false;
+   HomeScreen({super.key});
+   bool showBadge = false;
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HomeBloc, HomeState>(
-
       listener: (context, state) {
         if (state is IsFavSuccess) {
           mySnakeBar(message: state.message, context: context);
         }
         if (state is HomeSuccess) {
           HomeBloc().add(GetFavorites());
-
         }
-
-        },
-
-
-
+      },
       builder: (context, state) {
-        showBadge = true  ;
+        showBadge = true;
         return Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.grey[500],
@@ -50,7 +43,8 @@ class HomeScreen extends StatelessWidget {
                   showBadge: showBadge,
                   ignorePointer: false,
                   onTap: () {},
-                  badgeContent: Text('${CacheHelper.getData(key: 'favorites') ?? 0}'),
+                  badgeContent:
+                      Text('${CacheHelper.getData(key: 'favorites') ?? 0}'),
                   badgeAnimation: const badges.BadgeAnimation.slide(
                     animationDuration: Duration(seconds: 1),
                     colorChangeAnimationDuration: Duration(seconds: 1),
@@ -74,7 +68,6 @@ class HomeScreen extends StatelessWidget {
                             MaterialPageRoute(
                               builder: (context) => const GetFavorite(),
                             ));
-
                       },
                       icon: const Icon(
                         Icons.shopping_cart,
@@ -94,21 +87,29 @@ class HomeScreen extends StatelessWidget {
                     child: SingleChildScrollView(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             const HomeCarousalSlider(),
                             SizedBox(
                               height: 10.h,
                             ),
-                            Text('Categories',style:  GoogleFonts.aBeeZee(fontSize: 25 ,color: Colors.black),),
+                            Text(
+                              'Categories',
+                              style: GoogleFonts.aBeeZee(
+                                  fontSize: 25, color: Colors.black),
+                            ),
                             SizedBox(
                               height: 100.h,
                               child: const HomeCategoriesList(),
                             ),
-                            Text('New Products',style:  GoogleFonts.aBeeZee(fontSize: 25 ,color: Colors.black),),
-
-                            HomeProductsList(state: state),
+                            Text(
+                              'New Products',
+                              style: GoogleFonts.aBeeZee(
+                                  fontSize: 25, color: Colors.black),
+                            ),
+                            const HomeProductsList(),
                           ],
                         ),
                       ),
