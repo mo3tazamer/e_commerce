@@ -46,7 +46,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
       ////////////////////////////////////
       else if (event is GetFavorites) {
-        emit(GetFavoritesLoading());
+
         try {
           getFavorites = await GetFavoritesUseCase(gitIt()).excute();
           CacheHelper.saveData(key: 'favorites', value: getFavorites?.length);
@@ -79,7 +79,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   void onTransition(Transition<HomeEvent, HomeState> transition) {
     super.onTransition(transition);
 
-      print(transition);
+      if (kDebugMode) {
+        print(transition);
+      }
 
   }
   // @override

@@ -4,9 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../contollers/home_bloc.dart';
 
+// ignore_for_file: prefer_const_constructors
 class HomeProductsList extends StatelessWidget {
-  const HomeProductsList({super.key,});
-
+  HomeProductsList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class HomeProductsList extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       padding: EdgeInsets.all(10.w),
-      itemCount: HomeBloc.getProducts!.length,
+      itemCount: HomeBloc.getProducts?.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           childAspectRatio: 1.0.h / 1.6.h,
           mainAxisSpacing: 1,
@@ -32,7 +32,7 @@ class HomeProductsList extends StatelessWidget {
                 height: 145.h,
                 width: double.infinity,
               ),
-              if ('${HomeBloc.getProducts![index].discount}' != '0')
+              if ('${HomeBloc.getProducts?[index].discount}' != '0')
                 Container(
                     color: Colors.red,
                     padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -43,7 +43,7 @@ class HomeProductsList extends StatelessWidget {
             ],
           ),
           Text(
-            '${HomeBloc.getProducts![index].name}',
+            '${HomeBloc.getProducts?[index].name}',
             overflow: TextOverflow.clip,
             maxLines: 2,
             style: TextStyle(fontSize: 15.sp, height: 1.3),
@@ -51,15 +51,15 @@ class HomeProductsList extends StatelessWidget {
           Row(
             children: [
               Text(
-                ' ${HomeBloc.getProducts![index].price.round()}',
+                ' ${HomeBloc.getProducts?[index].price.round()}',
                 style: TextStyle(fontSize: 15.sp, color: Colors.deepOrange),
               ),
               SizedBox(
                 width: 4.w,
               ),
-              if ('${HomeBloc.getProducts![index].discount}' != '0')
+              if ('${HomeBloc.getProducts?[index].discount}' != '0')
                 Text(
-                  ' ${HomeBloc.getProducts![index].oldPrice.round()}',
+                  ' ${HomeBloc.getProducts?[index].oldPrice.round()}',
                   style: TextStyle(
                       fontSize: 15.sp,
                       color: Colors.grey,
@@ -69,11 +69,11 @@ class HomeProductsList extends StatelessWidget {
               IconButton(
                   onPressed: () {
                     BlocProvider.of<HomeBloc>(context)
-                        .add(InFav(favId: HomeBloc.getProducts![index].id));
+                        .add(InFav(favId: HomeBloc.getProducts?[index].id));
                     //BlocProvider.of<HomeBloc>(context).add(MainPage());
                   },
                   icon: Icon(
-                      HomeBloc.fav[HomeBloc.getProducts![index].id] == false
+                      HomeBloc.fav[HomeBloc.getProducts?[index].id] == false
                           ? Icons.favorite_border
                           : Icons.favorite))
             ],

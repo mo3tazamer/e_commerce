@@ -19,3 +19,20 @@ class LogInUserError extends UserStates {
 
   LogInUserError(this.error);
 }
+class ProfileUserLoading extends UserStates {}
+class ProfileUserSuccess extends UserStates {
+  User user;
+
+  ProfileUserSuccess({required this.user});
+}
+
+class ProfileUserError extends UserStates {
+  final String error;
+
+  ProfileUserError(this.error);
+}
+class LogoutUserSuccess extends UserStates {
+  final String message;
+
+  LogoutUserSuccess(this.message);
+}

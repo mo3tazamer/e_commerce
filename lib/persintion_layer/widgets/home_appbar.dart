@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../contollers/home_bloc.dart';
-import '../screens/get_favorites.dart';
+import '../../core/cachehelper/cachehelper.dart';
+
+import '../../core/route.dart';
+
 import 'my_searchFiled.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
-
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
-   HomeAppBar({super.key,});
-  static bool showBadge=false;
-
+  // ignore: non_constant_identifier_names
+  HomeAppBar({super.key});
+  static bool showBadge = false;
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +24,10 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         badges.Badge(
           position: badges.BadgePosition.topEnd(top: -10, end: -1),
-          showBadge: true,
+          showBadge: showBadge,
           ignorePointer: false,
           onTap: () {},
-          badgeContent: Text('${HomeBloc.getFavorites?.length ?? 0}'),
+          badgeContent: Text('${CacheHelper.getData(key: 'favorites') ?? 0}'),
           badgeAnimation: const badges.BadgeAnimation.slide(
             animationDuration: Duration(seconds: 1),
             colorChangeAnimationDuration: Duration(seconds: 1),
@@ -45,18 +46,19 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           child: IconButton(
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>  const GetFavorite(),
-                    ));
+                Navigator.pushNamed(context, AppRoute.favorites);
               },
               icon: const Icon(
                 Icons.shopping_cart,
                 color: Colors.white,
               )),
         ),
-        IconButton(onPressed: () {}, icon: const Icon(Icons.person))
+        IconButton(
+            onPressed: () {
+              // UserBloc().add(ProFileUserEvent());
+              Navigator.pushNamed(context, AppRoute.profile);
+            },
+            icon: const Icon(Icons.person))
       ],
     );
   }

@@ -27,174 +27,176 @@ class LogInScreen extends StatelessWidget {
     final formKey = GlobalKey<FormState>();
     bool obscureText = true;
 
-    return BlocConsumer<UserBloc, UserStates>(
-      listener: (context, state) {
-        if (state is LogInUserSuccess  ) {
-          if (state.user.status) {
-            mySnakeBar(message: '${state.user.message}', context: context);
-            HomeBloc().add(GetFavorites());
-            Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>  HomeScreen(),
-                ));
-          }else {
-            mySnakeBar(message: '${state.user.message}', context: context);
+    return BlocProvider(create: (context) => UserBloc(),
+      child: BlocConsumer<UserBloc, UserStates>(
+        listener: (context, state) {
+          if (state is LogInUserSuccess  ) {
+            if (state.user.status) {
+              mySnakeBar(message: '${state.user.message}', context: context);
+
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>  HomeScreen(),
+                  ));
+            }else {
+              mySnakeBar(message: '${state.user.message}', context: context);
+            }
+
+
+
           }
-
-
-
-        }
-      },
-      builder: (context, state) {
-        return Scaffold(
-          body: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            child: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Form(
-                key: formKey,
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image(
-                        height: 180.h,
-                        width: 180.w,
-                        image: const AssetImage(
-                          'assets/login.jpg',
+        },
+        builder: (context, state) {
+          return Scaffold(
+            body: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image(
+                          height: 180.h,
+                          width: 180.w,
+                          image: const AssetImage(
+                            'assets/login.jpg',
+                          ),
                         ),
-                      ),
-                      Text('Log In', style: GoogleFonts.aboreto(fontSize: 50)),
-                      SizedBox(
-                        height: 10.h,
-                      ),
-                      MyTextFiled(
-                        obscureText: false,
-                        keyboardType: TextInputType.emailAddress,
-                        validatorText: 'please enter correct email',
-                        focusNode: textField1Focus,
-                        prefixIcon: Icons.supervised_user_circle,
-                        hintText: 'enter your email',
-                        labelText: 'Mail',
-                        controller: controller1,
-                        textInputAction: TextInputAction.next,
-                        focusNode2: textField2Focus,
-                      ),
-                      SizedBox(
-                        height: 15.h,
-                      ),
-                      StatefulBuilder(
-                        builder: (context, setState) {
-                          return MyTextFiled(
-                              suffixIcon: IconButton(
-                                icon: Icon(obscureText
-                                    ? Icons.visibility
-                                    : Icons.visibility_off),
-                                onPressed: () {
-                                  setState(
-                                    () {
-                                      obscureText = !obscureText;
-                                    },
-                                  );
+                        Text('Log In', style: GoogleFonts.aboreto(fontSize: 50)),
+                        SizedBox(
+                          height: 10.h,
+                        ),
+                        MyTextFiled(
+                          obscureText: false,
+                          keyboardType: TextInputType.emailAddress,
+                          validatorText: 'please enter correct email',
+                          focusNode: textField1Focus,
+                          prefixIcon: Icons.supervised_user_circle,
+                          hintText: 'enter your email',
+                          labelText: 'Mail',
+                          controller: controller1,
+                          textInputAction: TextInputAction.next,
+                          focusNode2: textField2Focus,
+                        ),
+                        SizedBox(
+                          height: 15.h,
+                        ),
+                        StatefulBuilder(
+                          builder: (context, setState) {
+                            return MyTextFiled(
+                                suffixIcon: IconButton(
+                                  icon: Icon(obscureText
+                                      ? Icons.visibility
+                                      : Icons.visibility_off),
+                                  onPressed: () {
+                                    setState(
+                                      () {
+                                        obscureText = !obscureText;
+                                      },
+                                    );
+                                  },
+                                ),
+                                obscureText: obscureText,
+                                focusNode: textField2Focus,
+                                prefixIcon: Icons.import_contacts_sharp,
+                                hintText: 'enter your password',
+                                labelText: 'password',
+                                controller: controller2,
+                                textInputAction: TextInputAction.done,
+                                validatorText: 'validatorText',
+                                keyboardType: TextInputType.visiblePassword);
+                          },
+                        ),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        state is LogInUserLoading
+                            ? const CircularProgressIndicator()
+                            : MyButton(
+                                onTap: () {
+                                  if (formKey.currentState!.validate()) {
+                                    BlocProvider.of<UserBloc>(context).add(
+                                        LogInUserEvent(
+                                            email: controller1.text,
+                                            password: controller2.text));
+                                  }
                                 },
+                                buttonText: 'Login',
                               ),
-                              obscureText: obscureText,
-                              focusNode: textField2Focus,
-                              prefixIcon: Icons.import_contacts_sharp,
-                              hintText: 'enter your password',
-                              labelText: 'password',
-                              controller: controller2,
-                              textInputAction: TextInputAction.done,
-                              validatorText: 'validatorText',
-                              keyboardType: TextInputType.visiblePassword);
-                        },
-                      ),
-                      const SizedBox(
-                        height: 12,
-                      ),
-                      state is LogInUserLoading
-                          ? const CircularProgressIndicator()
-                          : MyButton(
-                              onTap: () {
-                                if (formKey.currentState!.validate()) {
-                                  BlocProvider.of<UserBloc>(context).add(
-                                      LogInUserEvent(
-                                          email: controller1.text,
-                                          password: controller2.text));
-                                }
-                              },
-                              buttonText: 'Login',
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
+                          children: [
+                            const Expanded(
+                                child: Divider(
+                              thickness: 2,
+                            )),
+                            Text(
+                              'Or continue With',
+                              style: TextStyle(color: Colors.grey.shade600),
                             ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Row(
-                        children: [
-                          const Expanded(
-                              child: Divider(
-                            thickness: 2,
-                          )),
-                          Text(
-                            'Or continue With',
-                            style: TextStyle(color: Colors.grey.shade600),
-                          ),
-                          const Expanded(
-                              child: Divider(
-                            thickness: 2,
-                          )),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      const Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          MyImageLogo(imagePath: 'assets/google.png'),
-                          SizedBox(
-                            width: 15,
-                          ),
-                          MyImageLogo(imagePath: 'assets/apple.png'),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 15,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Not a member?',
-                            style: TextStyle(
-                              color: Colors.grey.shade600,
+                            const Expanded(
+                                child: Divider(
+                              thickness: 2,
+                            )),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            MyImageLogo(imagePath: 'assets/google.png'),
+                            SizedBox(
+                              width: 15,
                             ),
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => RegisterScreen(),
-                                  ));
-                            },
-                            child: const Text(
-                              'Register Now',
+                            MyImageLogo(imagePath: 'assets/apple.png'),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Not a member?',
                               style: TextStyle(
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.bold),
+                                color: Colors.grey.shade600,
+                              ),
                             ),
-                          ),
-                        ],
-                      )
-                    ]),
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => RegisterScreen(),
+                                    ));
+                              },
+                              child: const Text(
+                                'Register Now',
+                                style: TextStyle(
+                                    color: Colors.blue,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ],
+                        )
+                      ]),
+                ),
               ),
             ),
-          ),
-        );
-      },
+          );
+        },
+      ),
     );
   }
 }
