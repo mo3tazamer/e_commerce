@@ -7,9 +7,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/theme/color_manager.dart';
 import '../contollers/home_bloc.dart';
 
-// ignore_for_file: prefer_const_constructors
+
+//ignore: must_be_immutable
 class HomeProductsList extends StatelessWidget {
-  HomeProductsList({super.key});
+  HomeProductsList({Key? key}) : super(key: key);
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +24,8 @@ class HomeProductsList extends StatelessWidget {
       itemCount: HomeBloc.getProducts?.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           childAspectRatio: 1.0.h / 1.6.h,
-          mainAxisSpacing: 1,
-          crossAxisSpacing: 1,
+          mainAxisSpacing: 1.h,
+          crossAxisSpacing: 1.w,
           crossAxisCount: 2),
       itemBuilder: (context, index) => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,7 +37,7 @@ class HomeProductsList extends StatelessWidget {
                 '${HomeBloc.getProducts![index].image}',
                 scale: 4.0,
                 height: 145.h,
-                width: double.infinity,
+                width: double.infinity.w,
               ),
               if ('${HomeBloc.getProducts?[index].discount}' != '0')
                 Container(
@@ -52,7 +55,7 @@ class HomeProductsList extends StatelessWidget {
             maxLines: 2,
             style: getLightStyle(
                 color: ColorManager.black,
-                fontSize: FontSize.s14.sp,
+                fontSize: FontSize.s12.sp,
                 height: 1.3.h),
           ),
           Row(
@@ -60,7 +63,7 @@ class HomeProductsList extends StatelessWidget {
               Text(
                 ' ${HomeBloc.getProducts?[index].price.round()}',
                 style: getMediumStyle(
-                    color: ColorManager.primary, fontSize: FontSize.s14.sp),
+                    color: ColorManager.primary, fontSize: FontSize.s12.sp),
               ),
               SizedBox(
                 width: 4.w,
@@ -69,7 +72,7 @@ class HomeProductsList extends StatelessWidget {
                 Text(
                   ' ${HomeBloc.getProducts?[index].oldPrice.round()}',
                   style: getSemiBoldStyle(
-                      color: ColorManager.black, fontSize: FontSize.s14.sp,textDecoration: TextDecoration.lineThrough),
+                      color: ColorManager.black, fontSize: FontSize.s12.sp,textDecoration: TextDecoration.lineThrough),
                 ),
               const Spacer(),
               IconButton(
@@ -81,7 +84,7 @@ class HomeProductsList extends StatelessWidget {
                   icon: Icon(
                       HomeBloc.fav[HomeBloc.getProducts?[index].id] == false
                           ? Icons.favorite_border
-                          : Icons.favorite))
+                          : Icons.favorite,color:ColorManager.primary))
             ],
           ),
         ],

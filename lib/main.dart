@@ -4,6 +4,7 @@ import 'package:e_commerce/persintion_layer/screens/home.dart';
 import 'package:e_commerce/persintion_layer/screens/login_screen.dart';
 import 'package:flutter/foundation.dart';
 
+
 import 'package:flutter/material.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -24,7 +25,7 @@ void main() async {
   await CacheHelper.init();
 //!kReleaseMode
   runApp(DevicePreview(
-    enabled: false,
+    enabled: !kReleaseMode,
     builder: (context) => const MyApp(),
   ));
 }

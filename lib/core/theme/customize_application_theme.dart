@@ -16,6 +16,10 @@ ThemeData customizeApplicationTheme() {
     primaryColorDark: ColorManager.darkGrey,
     disabledColor: ColorManager.grey1,
     splashColor: ColorManager.grey,
+    progressIndicatorTheme:   const ProgressIndicatorThemeData(
+      color: ColorManager.primary,
+    ),
+
     //appbar
     appBarTheme:  const AppBarTheme(
       backgroundColor: ColorManager.primary,

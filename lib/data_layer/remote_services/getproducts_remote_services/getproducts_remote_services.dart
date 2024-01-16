@@ -15,7 +15,8 @@ class GetProductsRemote extends BaseGetProductsRemote {
   @override
   Future<List<ProductsModel>> getProduct() async {
     var response = await Dio(BaseOptions(
-            headers: {'Authorization': CacheHelper.getData(key: 'token')}))
+            headers: {'Authorization': CacheHelper.getData(key: 'token'),
+            'lang': 'en'},),)
         .get(AppConst.getProducts);
 
     if (response.statusCode == 200) {
