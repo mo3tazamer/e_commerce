@@ -1,15 +1,13 @@
-
-import 'package:e_commerce/persintion_layer/contollers/home_bloc.dart';
 import 'package:e_commerce/persintion_layer/contollers/userBloc/userBloc.dart';
 import 'package:e_commerce/persintion_layer/contollers/userBloc/userEvents.dart';
 import 'package:e_commerce/persintion_layer/contollers/userBloc/userStates.dart';
-import 'package:e_commerce/persintion_layer/screens/home.dart';
-import 'package:e_commerce/persintion_layer/screens/register_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../core/routes/route.dart';
 import '../widgets/my_button.dart';
 import '../widgets/my_imagelogo.dart';
 import '../widgets/my_snakebar.dart';
@@ -27,24 +25,18 @@ class LogInScreen extends StatelessWidget {
     final formKey = GlobalKey<FormState>();
     bool obscureText = true;
 
-    return BlocProvider(create: (context) => UserBloc(),
+    return BlocProvider(
+      create: (context) => UserBloc(),
       child: BlocConsumer<UserBloc, UserStates>(
         listener: (context, state) {
-          if (state is LogInUserSuccess  ) {
+          if (state is LogInUserSuccess) {
             if (state.user.status) {
               mySnakeBar(message: '${state.user.message}', context: context);
 
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>  HomeScreen(),
-                  ));
-            }else {
+              Navigator.pushReplacementNamed(context, AppRoute.home,);
+            } else {
               mySnakeBar(message: '${state.user.message}', context: context);
             }
-
-
-
           }
         },
         builder: (context, state) {
@@ -65,7 +57,8 @@ class LogInScreen extends StatelessWidget {
                             'assets/login.jpg',
                           ),
                         ),
-                        Text('Log In', style: GoogleFonts.aboreto(fontSize: 50)),
+                        Text('Log In',
+                            style: GoogleFonts.aboreto(fontSize: 50)),
                         SizedBox(
                           height: 10.h,
                         ),
@@ -175,11 +168,7 @@ class LogInScreen extends StatelessWidget {
                             ),
                             InkWell(
                               onTap: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => RegisterScreen(),
-                                    ));
+                                Navigator.pushNamed(context, AppRoute.register);
                               },
                               child: const Text(
                                 'Register Now',

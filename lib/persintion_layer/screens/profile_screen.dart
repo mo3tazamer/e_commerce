@@ -1,10 +1,11 @@
 import 'package:e_commerce/core/cachehelper/cachehelper.dart';
+import 'package:e_commerce/core/theme/color_manager.dart';
 import 'package:e_commerce/persintion_layer/widgets/my_snakebar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../core/route.dart';
+import '../../core/routes/route.dart';
 import '../contollers/userBloc/userBloc.dart';
 import '../contollers/userBloc/userEvents.dart';
 import '../contollers/userBloc/userStates.dart';
@@ -36,7 +37,7 @@ class ProFileScreen extends StatelessWidget {
                             children: [
                               Container(
                                 decoration: BoxDecoration(
-                                  color: Colors.blue,
+                                  color: ColorManager.primary,
                                   borderRadius: BorderRadius.circular(40),
                                 ),
                                 width: MediaQuery.of(context).size.width * .7,
@@ -75,15 +76,18 @@ class ProFileScreen extends StatelessWidget {
                         ProFileText(
                           text: 'Payment',
                         ),
-                        MyButton(
-                          buttonText: 'Sign Out',
-                          onTap: () {
-                            CacheHelper.removeData(key: 'token');
-                            BlocProvider.of<UserBloc>(context)
-                                .add(LogoutUserEvent());
-                            Navigator.pushReplacementNamed(
-                                context, AppRoute.login);
-                          },
+                        Padding(
+                          padding:  EdgeInsets.all(8.0.w),
+                          child: MyButton(
+                            buttonText: 'Sign Out',
+                            onTap: () {
+                              CacheHelper.removeData(key: 'token');
+                              BlocProvider.of<UserBloc>(context)
+                                  .add(LogoutUserEvent());
+                              Navigator.pushReplacementNamed(
+                                  context, AppRoute.login);
+                            },
+                          ),
                         ),
                       ])
                 : const Center(

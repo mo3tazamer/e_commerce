@@ -18,6 +18,7 @@ class HomeCarousalSlider extends StatelessWidget {
             item.image,
           ),
           fit: BoxFit.cover,
+
           filterQuality: FilterQuality.medium,
         ),
       ))
@@ -28,6 +29,7 @@ class HomeCarousalSlider extends StatelessWidget {
         autoPlayCurve: Curves.fastEaseInToSlowEaseOut,
         autoPlay: true,
         enableInfiniteScroll: true,
+        animateToClosest: true,
         aspectRatio: 1.6,
       ),
     );

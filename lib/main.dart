@@ -10,8 +10,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'core/cachehelper/cachehelper.dart';
 
-import 'core/route.dart';
+import 'core/routes/route.dart';
 import 'core/services_locator/services_locator.dart';
+import 'core/theme/customize_application_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,9 +22,9 @@ void main() async {
   ServicesLocator().favorites();
   ServicesLocator().categories();
   await CacheHelper.init();
-
+//!kReleaseMode
   runApp(DevicePreview(
-    enabled: !kReleaseMode,
+    enabled: false,
     builder: (context) => const MyApp(),
   ));
 }
@@ -44,10 +45,9 @@ class MyApp extends StatelessWidget {
         builder: DevicePreview.appBuilder,
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
+
+        theme: customizeApplicationTheme(),
+
         home: CacheHelper.getData(key: 'token') != null
             ? HomeScreen()
             : const LogInScreen(),

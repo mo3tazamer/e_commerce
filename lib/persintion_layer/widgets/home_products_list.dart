@@ -1,7 +1,10 @@
+import 'package:e_commerce/core/theme/font_manager.dart';
+import 'package:e_commerce/core/theme/textstyle_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../core/theme/color_manager.dart';
 import '../contollers/home_bloc.dart';
 
 // ignore_for_file: prefer_const_constructors
@@ -29,6 +32,7 @@ class HomeProductsList extends StatelessWidget {
             children: [
               Image.network(
                 '${HomeBloc.getProducts![index].image}',
+                scale: 4.0,
                 height: 145.h,
                 width: double.infinity,
               ),
@@ -46,13 +50,17 @@ class HomeProductsList extends StatelessWidget {
             '${HomeBloc.getProducts?[index].name}',
             overflow: TextOverflow.clip,
             maxLines: 2,
-            style: TextStyle(fontSize: 15.sp, height: 1.3),
+            style: getLightStyle(
+                color: ColorManager.black,
+                fontSize: FontSize.s14.sp,
+                height: 1.3.h),
           ),
           Row(
             children: [
               Text(
                 ' ${HomeBloc.getProducts?[index].price.round()}',
-                style: TextStyle(fontSize: 15.sp, color: Colors.deepOrange),
+                style: getMediumStyle(
+                    color: ColorManager.primary, fontSize: FontSize.s14.sp),
               ),
               SizedBox(
                 width: 4.w,
@@ -60,10 +68,8 @@ class HomeProductsList extends StatelessWidget {
               if ('${HomeBloc.getProducts?[index].discount}' != '0')
                 Text(
                   ' ${HomeBloc.getProducts?[index].oldPrice.round()}',
-                  style: TextStyle(
-                      fontSize: 15.sp,
-                      color: Colors.grey,
-                      decoration: TextDecoration.lineThrough),
+                  style: getSemiBoldStyle(
+                      color: ColorManager.black, fontSize: FontSize.s14.sp,textDecoration: TextDecoration.lineThrough),
                 ),
               const Spacer(),
               IconButton(

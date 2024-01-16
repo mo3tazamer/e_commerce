@@ -1,9 +1,10 @@
+import 'package:e_commerce/core/theme/color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/cachehelper/cachehelper.dart';
 
-import '../../core/route.dart';
+import '../../core/routes/route.dart';
 
 import 'my_searchFiled.dart';
 
@@ -17,7 +18,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.grey[500],
+
       title: const SearchField(
         hintText: 'Search',
       ),
@@ -37,7 +38,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           badgeStyle: badges.BadgeStyle(
             shape: badges.BadgeShape.circle,
-            badgeColor: Colors.red,
+            badgeColor: ColorManager.red,
             padding: const EdgeInsets.all(5),
             borderRadius: BorderRadius.circular(10.r),
             //borderSide: const BorderSide(color: Colors.white, width: 1),
@@ -50,7 +51,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
               },
               icon: const Icon(
                 Icons.shopping_cart,
-                color: Colors.white,
+                color: ColorManager.darkGrey,
               )),
         ),
         IconButton(
@@ -58,7 +59,7 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
               // UserBloc().add(ProFileUserEvent());
               Navigator.pushNamed(context, AppRoute.profile);
             },
-            icon: const Icon(Icons.person))
+            icon: const Icon(Icons.person_pin_sharp, color: ColorManager.darkGrey,size: 30,))
       ],
     );
   }

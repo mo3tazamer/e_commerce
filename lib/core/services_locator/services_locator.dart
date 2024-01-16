@@ -1,5 +1,3 @@
-
-
 import 'package:e_commerce/data_layer/repositery/favorites_repo.dart';
 import 'package:e_commerce/data_layer/repositery/getbanners_repo.dart';
 import 'package:e_commerce/data_layer/repositery/user_data_repo.dart';
@@ -25,7 +23,6 @@ import '../../data_layer/repositery/getproducts_repo.dart';
 import '../../domain_layer/repositery/base_user_repo/user_repo.dart';
 import '../../domain_layer/repositery/basecategoriesrepo/base_categories_repo.dart';
 import '../../domain_layer/repositery/base_porducts_repo.dart';
-
 
 import '../../domain_layer/use_cases/categoriesusecse/categoriesusecase.dart';
 import '../../domain_layer/use_cases/favoritesusecase/addordeletefavorites.dart';
@@ -64,14 +61,15 @@ class ServicesLocator {
   }
 
   void products() {
-    /// usecase
+    /// use case
 
     gitIt.registerLazySingleton(() => GetProductsUseCase(gitIt()));
     gitIt.registerLazySingleton(() => SearchProductsUseCase(gitIt()));
 
     ///domain
 
-    gitIt.registerLazySingleton<BaseGetProductsRepo>(() => GetProductsRepo(gitIt()));
+    gitIt.registerLazySingleton<BaseGetProductsRepo>(
+        () => GetProductsRepo(gitIt()));
 
     /// data
 
@@ -88,19 +86,18 @@ class ServicesLocator {
     gitIt.registerLazySingleton<BaseFavoritesRemoteServices>(
         () => FavoritesRemoteServices());
   }
-  void categories() {
-    /// usecase
 
-    gitIt.registerLazySingleton(
-            () => CategoriesUseCase( gitIt()));
+  void categories() {
+    /// use case
+
+    gitIt.registerLazySingleton(() => CategoriesUseCase(gitIt()));
 
     ///domain
     gitIt.registerLazySingleton<BaseCategoriesRepo>(
-            () => CategoriesRipo(gitIt()));
+        () => CategoriesRipo(gitIt()));
 
     /// data
     gitIt.registerLazySingleton<BaseCategoriesRemoteServices>(
-            () => CategoriesRemoteServices());
+        () => CategoriesRemoteServices());
   }
-
 }

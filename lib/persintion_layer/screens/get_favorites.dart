@@ -1,6 +1,10 @@
+import 'package:e_commerce/core/theme/color_manager.dart';
+import 'package:e_commerce/core/theme/font_manager.dart';
+import 'package:e_commerce/core/theme/textstyle_manager.dart';
 import 'package:e_commerce/persintion_layer/contollers/home_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class GetFavorite extends StatelessWidget {
@@ -17,8 +21,8 @@ class GetFavorite extends StatelessWidget {
             body: HomeBloc.getFavorites != null
                 ? Column(
                     children: [
-                      const SizedBox(
-                        height: 50,
+                      SizedBox(
+                        height: 50.h,
                       ),
                       Expanded(
                         child: GridView.builder(
@@ -38,18 +42,19 @@ class GetFavorite extends StatelessWidget {
                                 children: [
                                   Image.network(
                                     '${HomeBloc.getFavorites![index].image}',
-                                    height: 150,
-                                    width: double.infinity,
+                                    height: 150.h,
+                                    width: double.infinity.w,
                                   ),
                                   if ('${HomeBloc.getFavorites![index].id}' !=
                                       '0')
                                     Container(
-                                        color: Colors.red,
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 8),
-                                        child: const Text(
+                                        color: ColorManager.red,
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 8.w),
+                                        child: Text(
                                           'Discount',
-                                          style: TextStyle(fontSize: 12),
+                                          style: getMediumStyle(
+                                              color: ColorManager.black),
                                         ))
                                 ],
                               ),
@@ -57,15 +62,17 @@ class GetFavorite extends StatelessWidget {
                                 '${HomeBloc.getFavorites![index].name}',
                                 overflow: TextOverflow.clip,
                                 maxLines: 2,
-                                style:
-                                    const TextStyle(fontSize: 15, height: 1.3),
+                                style: getLightStyle(
+                                    color: ColorManager.black,
+                                    height: 1.3,
+                                    fontSize: FontSize.s14.sp),
                               ),
                               Row(
                                 children: [
                                   Text(
                                     ' ${HomeBloc.getFavorites![index].price.round()}',
-                                    style: const TextStyle(
-                                        fontSize: 15, color: Colors.deepOrange),
+                                    style: getMediumStyle(
+                                        color: ColorManager.primary, fontSize: FontSize.s14.sp),
                                   ),
                                   const SizedBox(
                                     width: 5,
@@ -74,11 +81,8 @@ class GetFavorite extends StatelessWidget {
                                       '0')
                                     Text(
                                       ' ${HomeBloc.getFavorites![index].oldPrice.round()}',
-                                      style: const TextStyle(
-                                          fontSize: 15,
-                                          color: Colors.grey,
-                                          decoration:
-                                              TextDecoration.lineThrough),
+                                      style: getSemiBoldStyle(
+                                          color: ColorManager.black, fontSize: FontSize.s14.sp,textDecoration: TextDecoration.lineThrough),
                                     ),
                                   const Spacer(),
                                   IconButton(

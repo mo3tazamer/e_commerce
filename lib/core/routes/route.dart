@@ -2,8 +2,8 @@ import 'package:e_commerce/persintion_layer/screens/home.dart';
 import 'package:e_commerce/persintion_layer/screens/login_screen.dart';
 import 'package:e_commerce/persintion_layer/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
-import '../persintion_layer/screens/get_favorites.dart';
-import '../persintion_layer/screens/register_screen.dart';
+import '../../persintion_layer/screens/get_favorites.dart';
+import '../../persintion_layer/screens/register_screen.dart';
 
 class AppRoute {
   static const String home = '/';
@@ -15,11 +15,29 @@ class AppRoute {
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
+
     switch (settings.name) {
       case AppRoute.home:
         return MaterialPageRoute(builder: (context) => HomeScreen());
+
       case AppRoute.favorites:
-        return MaterialPageRoute(builder: (context) => const GetFavorite());
+        return PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              const GetFavorite(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            const begin = Offset(1.0, 0.0);
+            const end = Offset.zero;
+
+            const curve = Curves.easeIn;
+       ;
+            var tween =
+                Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+            return SlideTransition(
+             position: animation.drive(tween),
+              child: child,
+            );
+          },
+        );
       case AppRoute.login:
         return MaterialPageRoute(builder: (context) => const LogInScreen());
       case AppRoute.register:

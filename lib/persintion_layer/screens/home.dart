@@ -1,12 +1,13 @@
+import 'package:e_commerce/core/theme/color_manager.dart';
+import 'package:e_commerce/core/theme/font_manager.dart';
 import 'package:e_commerce/persintion_layer/contollers/home_bloc.dart';
-import 'package:e_commerce/persintion_layer/contollers/userBloc/userBloc.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 
-import '../contollers/userBloc/userEvents.dart';
+import '../../core/theme/textstyle_manager.dart';
 import '../widgets/home_appbar.dart';
 import '../widgets/home_carousal_slider.dart';
 import '../widgets/home_categories_list.dart';
@@ -14,22 +15,22 @@ import '../widgets/home_products_list.dart';
 
 import '../widgets/my_snakebar.dart';
 
-
-
 //ignore: must_be_immutable
 class HomeScreen extends StatelessWidget {
-   HomeScreen({super.key});
-   bool showBadge = false;
+  HomeScreen({super.key});
+  bool showBadge = false;
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(  create:   (context) => HomeBloc()..add(MainPage())..add(GetFavorites()),
+    return BlocProvider(
+      create: (context) => HomeBloc()
+        ..add(MainPage())
+        ..add(GetFavorites()),
       child: BlocConsumer<HomeBloc, HomeState>(
         listener: (context, state) {
           if (state is IsFavSuccess) {
             mySnakeBar(message: state.message, context: context);
           }
-
         },
         builder: (context, state) {
           HomeAppBar.showBadge = true;
@@ -54,20 +55,18 @@ class HomeScreen extends StatelessWidget {
                                 height: 10.h,
                               ),
                               Text(
-                                'Categories',
-                                style: GoogleFonts.aBeeZee(
-                                    fontSize: 25, color: Colors.black),
-                              ),
+                                'Categories',style: getMediumStyle(color: ColorManager.black,fontSize: FontSize.s32),
+                                ),
+
                               SizedBox(
                                 height: 100.h,
                                 child: const HomeCategoriesList(),
                               ),
                               Text(
                                 'New Products',
-                                style: GoogleFonts.aBeeZee(
-                                    fontSize: 25, color: Colors.black),
+                                style: getMediumStyle(color: ColorManager.black,fontSize: FontSize.s32),
                               ),
-                               HomeProductsList(),
+                              HomeProductsList(),
                             ],
                           ),
                         ),
