@@ -17,5 +17,5 @@ abstract class BaseUserRepo {
       required String email,
       required String password,
        String? image});
-  Future<LogOutModel> postLogOut(var token);
+  Future<LogOutModel> postLogOut(String token);
 }

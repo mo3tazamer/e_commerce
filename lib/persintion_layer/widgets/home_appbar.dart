@@ -1,24 +1,30 @@
 import 'package:e_commerce/core/theme/color_manager.dart';
+
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
+
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../core/cachehelper/cachehelper.dart';
 
 import '../../core/routes/route.dart';
 
+
 import 'my_searchFiled.dart';
 
+//ignore: must_be_immutable
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
-  // ignore: non_constant_identifier_names
-  HomeAppBar({super.key});
-  static bool showBadge = false;
+  Size get preferredSize => const Size.fromHeight(50);
+
+  HomeAppBar(
+      {super.key, this.showBadge = false, this.favCount, this.onPressed});
+  int? favCount;
+  bool showBadge;
+  void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-
       title: const SearchField(
         hintText: 'Search',
       ),
@@ -26,9 +32,11 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
         badges.Badge(
           position: badges.BadgePosition.topEnd(top: -10, end: -1),
           showBadge: showBadge,
-          ignorePointer: false,
           onTap: () {},
-          badgeContent: Text('${CacheHelper.getData(key: 'favorites') ?? 0}'),
+          badgeContent: Text(
+            '$favCount ',
+            style: const TextStyle(color: Colors.white),
+          ),
           badgeAnimation: const badges.BadgeAnimation.slide(
             animationDuration: Duration(seconds: 1),
             colorChangeAnimationDuration: Duration(seconds: 1),
@@ -46,12 +54,11 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
             elevation: 0,
           ),
           child: IconButton(
-              onPressed: () {
-                Navigator.pushNamed(context, AppRoute.favorites);
-              },
+              onPressed: onPressed,
               icon: const Icon(
-                Icons.shopping_cart,
+                Icons.favorite,
                 color: ColorManager.darkGrey,
+                size: 30,
               )),
         ),
         IconButton(
@@ -59,7 +66,11 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
               // UserBloc().add(ProFileUserEvent());
               Navigator.pushNamed(context, AppRoute.profile);
             },
-            icon: const Icon(Icons.person_pin_sharp, color: ColorManager.darkGrey,size: 30,))
+            icon: const Icon(
+              Icons.person_pin_sharp,
+              color: ColorManager.darkGrey,
+              size: 30,
+            ))
       ],
     );
   }

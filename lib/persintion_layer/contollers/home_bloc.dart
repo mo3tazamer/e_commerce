@@ -1,3 +1,5 @@
+
+
 import 'package:bloc/bloc.dart';
 import 'package:e_commerce/core/services_locator/services_locator.dart';
 import 'package:e_commerce/domain_layer/entites/banners/banners.dart';
@@ -8,7 +10,7 @@ import 'package:e_commerce/domain_layer/use_cases/getbannersusecase/getbanners.d
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../core/cachehelper/cachehelper.dart';
+import '../../data_layer/models/fav_model.dart';
 import '../../domain_layer/entites/products/products.dart';
 import '../../domain_layer/use_cases/favoritesusecase/addordeletefavorites.dart';
 import '../../domain_layer/use_cases/favoritesusecase/getfavorites_usecase.dart';
@@ -18,22 +20,34 @@ part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  static Banners? getBanners;
-  static Categories? categories;
-  static List<Products>? getProducts;
+  String? authToken;
+  Banners? getBanners;
+  Categories? categories;
+  List<Products>? getProducts;
   static List<Products>? getFavorites;
-
   static Map<int, bool> fav = {};
+
+
 
   HomeBloc() : super(HomeInitial()) {
     on<HomeEvent>((event, emit) async {
+      // if (authToken == null) {
+      //   // Handle the case where the authToken is null (e.g., user is not authenticated)
+      //   emit(HomeError(error: 'User is not authenticated'));
+      //   print(HomeError(error: 'User is not authenticated'));
+      //   return;
+      // }
       emit(HomeLoading());
+
+      // get home page data
       if (event is MainPage) {
         try {
           getBanners =
               await GetBannersUseCase(baseGetBannersRepo: gitIt()).excute();
           categories = await CategoriesUseCase(gitIt()).excute();
           getProducts = await GetProductsUseCase(gitIt()).excute();
+          // getFavorites = await GetFavoritesUseCase(gitIt()).excute();
+
           for (var element in getProducts!) {
             fav.addAll({element.id!: element.inFavorites!});
           }
@@ -44,52 +58,65 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         }
       }
 
-      ////////////////////////////////////
-      else if (event is GetFavorites) {
-
+     // get favorites data
+      else if (event is GetFavoritesEvent) {
         try {
           getFavorites = await GetFavoritesUseCase(gitIt()).excute();
-          CacheHelper.saveData(key: 'favorites', value: getFavorites?.length);
+
           emit(GetFavoritesSuccess());
         } catch (e) {
-
           emit(GetFavoritesError(error: e.toString()));
         }
       }
 
-      /////////////////////////////////////////
+      // update favorites product data
 
       else if (event is InFav) {
         fav[event.favId!] = !fav[event.favId]!;
         try {
-          var fav = await AddOrDeleteFavoritesUseCase(gitIt())
+          var inFav = await AddOrDeleteFavoritesUseCase(gitIt())
               .excute(productId: (event.favId)!);
           getFavorites = await GetFavoritesUseCase(gitIt()).excute();
-          CacheHelper.saveData(key: 'favorites', value: getFavorites?.length);
-          emit(IsFavSuccess(fav));
+          if (!inFav.status) {
+            fav[event.favId!] = !fav[event.favId]!;
+          }
+
+          emit(IsFavSuccess(inFav));
         } catch (e) {
           fav[event.favId!] = !fav[event.favId]!;
 
           emit(IsFavError(error: e.toString()));
         }
       }
+
     });
   }
   @override
   void onTransition(Transition<HomeEvent, HomeState> transition) {
     super.onTransition(transition);
 
-      if (kDebugMode) {
-        print(transition);
-      }
+    if (kDebugMode) {
+      print(transition);
+    }
 
   }
-  // @override
-  // void onChange(Change<HomeState> change) {
 
-  //   super.onChange(change);
-  //   if (kDebugMode) {
-  //     print(change);
-  //   }
-  // }
+
+
 }
+
+
+
+// final _favCountController = StreamController<int>();
+//
+// Stream<int> get favCountStream => _favCountController.stream;
+
+// void updateFavCount() async {
+//   int favCount = getFavorites?.length ?? 0;
+//   _favCountController.add(favCount);
+// }
+
+// if (event is GetFavoritesEvent || event is InFav) {
+//   updateFavCount();
+//   emit(HomeSuccess());
+// }

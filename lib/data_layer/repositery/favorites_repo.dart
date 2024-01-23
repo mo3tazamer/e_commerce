@@ -1,6 +1,7 @@
 import 'package:e_commerce/domain_layer/entites/products/products.dart';
 import 'package:e_commerce/domain_layer/repositery/base_favorites_repo.dart';
 
+import '../models/fav_model.dart';
 import '../remote_services/favorites_remote_services/favorites_remote_services.dart';
 
 
@@ -10,7 +11,7 @@ class FavoriteRepo extends BaseFavoritesRepo {
   FavoriteRepo(this.baseFavoritesRemoteServices);
 
   @override
-  Future<String> addOrDeleteFavorites({required int productId}) async {
+  Future<FavModel> addOrDeleteFavorites({required int productId}) async {
     return await baseFavoritesRemoteServices.addOrDeleteFavorites(
         productId: productId);
   }

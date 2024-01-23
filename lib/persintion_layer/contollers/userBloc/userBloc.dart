@@ -54,9 +54,9 @@ class UserBloc extends Bloc<UserEvents, UserStates> {
              emit(LogInUserError(e.errorMessageModel.message));
            }
          }if(event is LogoutUserEvent){
-
+           emit(ProfileUserLoading());
            try {
-            var logout = await LogOutUseCase(gitIt()).excute(CacheHelper.getData(key: 'token') );
+            var logout = await LogOutUseCase(gitIt()).excute(CacheHelper.getData(key: 'token'));
              emit(LogoutUserSuccess(logout.message));
            }
            on ServerException catch (e) {

@@ -9,7 +9,7 @@ class LogOutUseCase {
 
   LogOutUseCase(this.baseUserRepo);
 
-  Future<LogOutModel> excute(var token) async {
+  Future<LogOutModel> excute(String token) async {
     return await baseUserRepo.postLogOut(token);
   }
 }

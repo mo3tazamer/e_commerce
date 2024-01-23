@@ -11,7 +11,12 @@ class InFav extends HomeEvent {
 
    InFav({required this.favId});
 }
-class GetFavorites extends HomeEvent{}
+class GetFavoritesEvent extends HomeEvent{}
+
+
+
+
+
 
 
 

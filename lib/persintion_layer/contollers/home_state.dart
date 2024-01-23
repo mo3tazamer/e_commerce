@@ -16,9 +16,9 @@ class HomeError extends HomeState {
 }
 
 class IsFavSuccess extends HomeState {
-  final String message;
+  final FavModel favModel;
 
-  IsFavSuccess(this.message);
+  IsFavSuccess(this.favModel);
 }
 
 class IsFavError extends HomeState {
@@ -33,4 +33,9 @@ class GetFavoritesError extends HomeState {
  final String error;
 
   GetFavoritesError({required this.error});
+}
+class UpdateFavSuccess extends HomeState {
+  final int? favCount;
+  UpdateFavSuccess({ this.favCount});
+
 }

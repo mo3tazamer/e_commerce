@@ -46,13 +46,31 @@ dependencies:
 
 
   cupertino_icons: ^1.0.2
+  flutter_native_splash: ^2.3.9
+flutter_native_splash:
+     color: "#994b0b"
+     image: assets/commerce.png
+     android_gravity: center
+     fullscreen: true
+
+
+android_12:
+   color: "#994b0b"
+   image: assets/commerce.png
+   android_gravity: center
+   fullscreen: true
+
+
+
+
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
 
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
 
 
 flutter:

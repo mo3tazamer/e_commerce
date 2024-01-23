@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 
 import 'color_manager.dart';
 
 ThemeData customizeApplicationTheme() {
   return ThemeData(
-    useMaterial3:false,
-    materialTapTargetSize:  MaterialTapTargetSize.shrinkWrap,
+
+    //materialTapTargetSize:  MaterialTapTargetSize.shrinkWrap,
     scaffoldBackgroundColor: ColorManager.white,
 
     //main color
@@ -21,17 +22,24 @@ ThemeData customizeApplicationTheme() {
     ),
 
     //appbar
-    appBarTheme:  const AppBarTheme(
+    appBarTheme:   const AppBarTheme(
+      systemOverlayStyle:  SystemUiOverlayStyle(
+        statusBarColor: ColorManager.primary,
+        statusBarIconBrightness: Brightness.light
+
+      ),
+
       backgroundColor: ColorManager.primary,
+
 
       elevation: 5,
       shadowColor: ColorManager.darkGrey,
     ),
     //card
-    cardTheme: const CardTheme(
-      color: ColorManager.white,
-      shadowColor: ColorManager.lightGrey,
-      elevation: 5,
-    ),
+    // cardTheme: const CardTheme(
+    //   color: ColorManager.white,
+    //   shadowColor: ColorManager.lightGrey,
+    //   elevation: 5,
+    // ),
   );
 }

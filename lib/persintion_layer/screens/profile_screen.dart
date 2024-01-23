@@ -1,6 +1,7 @@
 import 'package:e_commerce/core/cachehelper/cachehelper.dart';
 import 'package:e_commerce/core/theme/color_manager.dart';
-import 'package:e_commerce/persintion_layer/widgets/my_snakebar.dart';
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,11 +23,19 @@ class ProFileScreen extends StatelessWidget {
       child: BlocConsumer<UserBloc, UserStates>(
         listener: (context, state) {
           if (state is LogoutUserSuccess) {
-            mySnakeBar(context: context, message: state.message);
+            CacheHelper.removeData(key: 'token');
+
+            Navigator.pushNamedAndRemoveUntil(
+              context, AppRoute.login, (route) => false,);
+
+
           }
         },
         builder: (context, state) {
           return Scaffold(
+            appBar:   AppBar(
+
+            ),
             body: UserBloc.profileData != null
                 ? Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -38,13 +47,13 @@ class ProFileScreen extends StatelessWidget {
                               Container(
                                 decoration: BoxDecoration(
                                   color: ColorManager.primary,
-                                  borderRadius: BorderRadius.circular(40),
+                                  borderRadius: BorderRadius.circular(45),
                                 ),
                                 width: MediaQuery.of(context).size.width * .7,
-                                height: MediaQuery.of(context).size.height * .3,
+                                height: MediaQuery.of(context).size.height * .25,
                               ),
                               CircleAvatar(
-                                radius: 80,
+                                radius: 75,
                                 foregroundImage: NetworkImage(
                                     (UserBloc.profileData!.data!.image) ?? ''),
                               ),
@@ -81,11 +90,13 @@ class ProFileScreen extends StatelessWidget {
                           child: MyButton(
                             buttonText: 'Sign Out',
                             onTap: () {
-                              CacheHelper.removeData(key: 'token');
+
                               BlocProvider.of<UserBloc>(context)
                                   .add(LogoutUserEvent());
-                              Navigator.pushReplacementNamed(
-                                  context, AppRoute.login);
+
+
+                              //Navigator.popUntil(context, (route) => route.di);
+
                             },
                           ),
                         ),

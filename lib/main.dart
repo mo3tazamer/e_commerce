@@ -1,11 +1,9 @@
-import 'package:device_preview/device_preview.dart';
-
+import 'package:e_commerce/persintion_layer/contollers/home_bloc.dart';
 import 'package:e_commerce/persintion_layer/screens/home.dart';
 import 'package:e_commerce/persintion_layer/screens/login_screen.dart';
 
-
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,7 +11,6 @@ import 'core/cachehelper/cachehelper.dart';
 
 import 'core/routes/route.dart';
 import 'core/services_locator/services_locator.dart';
-import 'core/theme/customize_application_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,11 +20,8 @@ void main() async {
   ServicesLocator().favorites();
   ServicesLocator().categories();
   await CacheHelper.init();
-//!kReleaseMode
-  runApp(DevicePreview(
-    enabled: !kReleaseMode,
-    builder: (context) => const MyApp(),
-  ));
+
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -39,19 +33,22 @@ class MyApp extends StatelessWidget {
       designSize: const Size(360, 690),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (context, child) => MaterialApp(
-        onGenerateRoute: RouteGenerator.generateRoute,
-        initialRoute: AppRoute.home,
-        locale: DevicePreview.locale(context),
-        builder: DevicePreview.appBuilder,
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-
-        theme: customizeApplicationTheme(),
-
-        home: CacheHelper.getData(key: 'token') != null
-            ? HomeScreen()
-            : const LogInScreen(),
+      builder: (context, child) => BlocProvider(
+        create: (context) => HomeBloc()
+          ..add(
+            MainPage(),
+          )
+          ..add(
+            GetFavoritesEvent(),
+          ),
+        child: MaterialApp(
+          onGenerateRoute: RouteGenerator.generateRoute,
+          debugShowCheckedModeBanner: false,
+          title: 'e-Commerce',
+          home: CacheHelper.getData(key: 'token') != null
+              ? const HomeScreen()
+              : const LogInScreen(),
+        ),
       ),
     );
   }

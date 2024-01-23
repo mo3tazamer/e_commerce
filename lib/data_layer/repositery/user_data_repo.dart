@@ -21,7 +21,7 @@ class UserDataRepo extends BaseUserRepo {
   }
 
   @override
-  Future<LogOutModel> postLogOut(var token) async {
+  Future<LogOutModel> postLogOut(String token) async {
     return await baseUserRemote.postLogOut(token);
   }
 

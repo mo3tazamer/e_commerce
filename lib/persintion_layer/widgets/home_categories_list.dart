@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../contollers/home_bloc.dart';
+import '../../domain_layer/entites/categories/categories.dart';
 
+// ignore: must_be_immutable
 class HomeCategoriesList extends StatelessWidget {
-  const HomeCategoriesList ({super.key});
+   HomeCategoriesList ({super.key,  this.categories});
+   Categories? categories;
 
   @override
   Widget build(BuildContext context) {
@@ -11,13 +13,13 @@ class HomeCategoriesList extends StatelessWidget {
       key: const PageStorageKey<String>('page'),
       scrollDirection: Axis.horizontal,
       padding:  const EdgeInsets.all(10),
-      itemCount: HomeBloc.categories!.data.length,
+      itemCount: categories!.data.length,
       itemBuilder: (context, index) {
         {
           return Image(
               fit: BoxFit.cover,
               image: NetworkImage(
-                HomeBloc.categories!.data[index].image,
+                categories!.data[index].image,
               ));
         }
       },

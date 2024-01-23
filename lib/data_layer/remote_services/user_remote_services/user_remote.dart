@@ -13,7 +13,7 @@ abstract class BaseUserRemote {
       required String phone,
       required String email,
       required String password,
-       String? image});
+      String? image});
   Future<UserModel> postLogIn(
       {required String email, required String password});
   Future<UserModel> getProfile(String token);
@@ -22,7 +22,7 @@ abstract class BaseUserRemote {
       required String phone,
       required String email,
       required String password,
-       String? image});
+      String? image});
   Future<LogOutModel> postLogOut(String token);
 }
 
@@ -52,7 +52,6 @@ class UserRemote extends BaseUserRemote {
       //print(userdata.data?.token);
       if (userdata.data?.token != null) {
         CacheHelper.saveData(key: 'token', value: userdata.data!.token);
-
       }
 
       return userdata;
@@ -65,7 +64,7 @@ class UserRemote extends BaseUserRemote {
   @override
   Future<LogOutModel> postLogOut(String token) async {
     var response = await Dio().post(AppConst.postLogOut, data: {
-      'fcm_token': CacheHelper.getData(key: 'token'),
+      'fcm_token': token,
     });
 
     if (response.statusCode == 200) {
@@ -82,7 +81,7 @@ class UserRemote extends BaseUserRemote {
       required String phone,
       required String email,
       required String password,
-       String? image}) async {
+      String? image}) async {
     var response = await Dio().post(AppConst.postRegister, data: {
       'name': name,
       'phone': phone,
@@ -92,8 +91,9 @@ class UserRemote extends BaseUserRemote {
     });
     if (response.statusCode == 200) {
       UserModel userdata = UserModel.fromMap(response.data);
-
-      CacheHelper.saveData(key: 'token', value: userdata.data!.token);
+      if (userdata.data?.token != null) {
+        CacheHelper.saveData(key: 'token', value: userdata.data!.token);
+      }
 
       return userdata;
     } else {
@@ -108,7 +108,7 @@ class UserRemote extends BaseUserRemote {
       required String phone,
       required String email,
       required String password,
-       String? image}) async {
+      String? image}) async {
     var response = await Dio().post(
       AppConst.putUpdateProfile,
       options: Options(headers: {

@@ -11,15 +11,17 @@ import '../../core/routes/route.dart';
 import '../widgets/my_button.dart';
 import '../widgets/my_imagelogo.dart';
 import '../widgets/my_snakebar.dart';
+
 import '../widgets/my_textfiled.dart';
+import 'home.dart';
+
 
 class LogInScreen extends StatelessWidget {
   const LogInScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final FocusNode textField1Focus = FocusNode();
-    final FocusNode textField2Focus = FocusNode();
+
     final TextEditingController controller1 = TextEditingController();
     final TextEditingController controller2 = TextEditingController();
     final formKey = GlobalKey<FormState>();
@@ -32,8 +34,13 @@ class LogInScreen extends StatelessWidget {
           if (state is LogInUserSuccess) {
             if (state.user.status) {
               mySnakeBar(message: '${state.user.message}', context: context);
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const HomeScreen(),
+                ),
+              );
 
-              Navigator.pushReplacementNamed(context, AppRoute.home,);
             } else {
               mySnakeBar(message: '${state.user.message}', context: context);
             }
@@ -50,15 +57,16 @@ class LogInScreen extends StatelessWidget {
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image(
+                        Image(fit:  BoxFit.fitHeight,
                           height: 180.h,
-                          width: 180.w,
+
                           image: const AssetImage(
-                            'assets/login.jpg',
+                            'assets/login.png',
+
                           ),
                         ),
                         Text('Log In',
-                            style: GoogleFonts.aboreto(fontSize: 50)),
+                            style: GoogleFonts.aboreto(fontSize: 50.sp)),
                         SizedBox(
                           height: 10.h,
                         ),
@@ -66,42 +74,34 @@ class LogInScreen extends StatelessWidget {
                           obscureText: false,
                           keyboardType: TextInputType.emailAddress,
                           validatorText: 'please enter correct email',
-                          focusNode: textField1Focus,
                           prefixIcon: Icons.supervised_user_circle,
                           hintText: 'enter your email',
                           labelText: 'Mail',
                           controller: controller1,
-                          textInputAction: TextInputAction.next,
-                          focusNode2: textField2Focus,
                         ),
                         SizedBox(
                           height: 15.h,
                         ),
                         StatefulBuilder(
-                          builder: (context, setState) {
-                            return MyTextFiled(
+                            builder: (context, setState) => MyTextFiled(
                                 suffixIcon: IconButton(
                                   icon: Icon(obscureText
                                       ? Icons.visibility
                                       : Icons.visibility_off),
-                                  onPressed: () {
-                                    setState(
-                                      () {
-                                        obscureText = !obscureText;
-                                      },
-                                    );
+                                  onPressed: () {setState(() {
+                                    obscureText = !obscureText;
+                                  });
+
                                   },
                                 ),
                                 obscureText: obscureText,
-                                focusNode: textField2Focus,
                                 prefixIcon: Icons.import_contacts_sharp,
                                 hintText: 'enter your password',
                                 labelText: 'password',
                                 controller: controller2,
-                                textInputAction: TextInputAction.done,
                                 validatorText: 'validatorText',
-                                keyboardType: TextInputType.visiblePassword);
-                          },
+                                keyboardType: TextInputType.visiblePassword,
+                            )
                         ),
                         const SizedBox(
                           height: 12,
@@ -113,8 +113,8 @@ class LogInScreen extends StatelessWidget {
                                   if (formKey.currentState!.validate()) {
                                     BlocProvider.of<UserBloc>(context).add(
                                         LogInUserEvent(
-                                            email: controller1.text,
-                                            password: controller2.text));
+                                            email: controller1.text.trim(),
+                                            password: controller2.text.trim()));
                                   }
                                 },
                                 buttonText: 'Login',

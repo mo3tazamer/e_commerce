@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class LogOutModel extends Equatable {
- final String status;
+ final bool status;
  final String message;
 
  const LogOutModel({required this.status, required this.message});
